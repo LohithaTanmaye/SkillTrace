@@ -1,0 +1,15 @@
+question_id,skill,question_text,option_a,option_b,option_c,option_d,correct_option,difficulty
+Q101,Python,What is the primary data structure in Python that is immutable?,List,Dictionary,Tuple,Set,C,Easy
+Q102,Python,Which keyword is used to create a generator function in Python?,return,yield,generate,emit,B,Medium
+Q103,Python,What is the time complexity of dictionary key lookup on average?,O(n),O(log n),O(1),O(n^2),C,Medium
+Q104,Python,Which module is standard for unit testing in Python?,pytest,unittest,mock,testify,B,Easy
+Q105,SQL,Which SQL clause is used to filter records after aggregation?,WHERE,HAVING,ORDER BY,GROUP BY,B,Easy
+Q106,SQL,Which join returns all rows from both tables whether matched or not?,INNER JOIN,LEFT JOIN,FULL OUTER JOIN,CROSS JOIN,C,Medium
+Q107,SQL,What is the purpose of an INDEX in a relational database?,Enforce security,Speed up data retrieval,Store backup data,Define foreign keys,B,Easy
+Q108,SQL,Which SQL window function assigns a unique sequential integer to rows?,RANK(),DENSE_RANK(),ROW_NUMBER(),NTILE(),C,Hard
+Q109,Power BI,What formula language is primarily used for calculated columns and measures in Power BI?,Python,DAX,M,VBA,B,Easy
+Q110,Power BI,Which tool in Power BI is used for data transformation and cleaning?,Power View,Power Pivot,Power Query Editor,Report View,C,Easy
+Q111,JavaScript,What is the difference between let and var in JavaScript?,let is block scoped while var is function scoped,var is block scoped,They are completely identical,let cannot be reassigned,A,Easy
+Q112,JavaScript,Which method converts a JSON string into a JavaScript object?,JSON.stringify(),JSON.parse(),JSON.toObject(),JSON.convert(),B,Easy
+Q113,Git,Which command creates a new branch and switches to it in one step?,git branch -new,git switch -c,git merge,git push,B,Easy
+Q114,Docker,Which file is used to define multi-container Docker applications?,Dockerfile,docker-compose.yml,Containerfile,daemon.json,B,Easy

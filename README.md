@@ -1,4 +1,4 @@
-﻿# SKILLTRACE 🎯
+# SKILLTRACE 🎯
 
 > **Student Skill Analysis & Job-Readiness Platform**  
 > *Smart India Hackathon (SIH) 2026*

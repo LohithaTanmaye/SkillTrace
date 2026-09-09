@@ -1,0 +1,6 @@
+job_id,title,domain,experience_level,skills
+JOB001,Junior Data Analyst,Data Science,Entry,"Python:4|SQL:4|Power BI:3|Excel:4"
+JOB002,Python Backend Developer,Software Engineering,Entry-Mid,"Python:4|FastAPI:3|SQL:4|Docker:3|Git:3"
+JOB003,Frontend Web Developer,Web Development,Entry,"JavaScript:4|HTML:4|CSS:4|React:3|Git:3"
+JOB004,Cloud DevOps Engineer,Cloud Computing,Mid,"Linux:4|Docker:4|AWS:3|Git:4|Python:3"
+JOB005,Machine Learning Engineer,Artificial Intelligence,Mid,"Python:5|SQL:4|Machine Learning:4|Statistics:4|Docker:3"
