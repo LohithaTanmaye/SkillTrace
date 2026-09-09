@@ -1,6 +1,8 @@
 job_id,title,domain,experience_level,skills
-JOB001,Junior Data Analyst,Data Science,Entry,"Python:4|SQL:4|Power BI:3|Excel:4"
-JOB002,Python Backend Developer,Software Engineering,Entry-Mid,"Python:4|FastAPI:3|SQL:4|Docker:3|Git:3"
-JOB003,Frontend Web Developer,Web Development,Entry,"JavaScript:4|HTML:4|CSS:4|React:3|Git:3"
-JOB004,Cloud DevOps Engineer,Cloud Computing,Mid,"Linux:4|Docker:4|AWS:3|Git:4|Python:3"
-JOB005,Machine Learning Engineer,Artificial Intelligence,Mid,"Python:5|SQL:4|Machine Learning:4|Statistics:4|Docker:3"
+JOB001,Junior Data Analyst,Data Science,Entry,Python:4|SQL:4|Excel:4|Power BI:3
+JOB002,Python Backend Developer,Software Engineering,Entry-Mid,Python:4|FastAPI:3|SQL:4|Docker:3|Git:3
+JOB003,Frontend Web Developer,Web Development,Entry,HTML:4|CSS:4|JavaScript:4|React:3|Git:3
+JOB004,Cloud DevOps Engineer,Cloud Computing,Mid,Linux:4|Docker:4|AWS:3|Git:4|Python:3
+JOB005,Machine Learning Engineer,Artificial Intelligence,Mid,Python:5|SQL:4|Machine Learning:4|Statistics:4|Docker:3
+JOB006,Software Developer,Software Engineering,Entry-Mid,Java:4|Python:4|DSA:4|SQL:3|Git:3
+JOB007,UI/UX Designer,Design & Creative,Entry-Mid,Figma:4|Wireframing:4|User Research:3|Prototyping:4

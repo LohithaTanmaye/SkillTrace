@@ -1175,6 +1175,10 @@ async function initAdminPage() {
       if (kpiAssessments) kpiAssessments.innerText = stats.total_assessments;
       if (kpiScore) kpiScore.innerText = `${stats.average_score}%`;
       if (kpiImprovement) kpiImprovement.innerText = `+${stats.average_improvement}%`;
+      const kpiPlacement = document.getElementById("kpi-placement-rate");
+      const kpiSalary = document.getElementById("kpi-avg-salary");
+      if (kpiPlacement) kpiPlacement.innerText = `${stats.placement_rate_pct || 0}%`;
+      if (kpiSalary) kpiSalary.innerText = `${stats.avg_salary_lpa || 0} LPA`;
 
       // Render Tiers Breakdown
       if (tierContainer && stats.tier_distribution) {
@@ -1241,7 +1245,7 @@ async function initAdminPage() {
     if (data.length === 0) {
       tableBody.innerHTML = `
         <tr>
-          <td colspan="8" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+          <td colspan="9" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
             No student enrollment records found matching your filter.
           </td>
         </tr>
@@ -1255,6 +1259,14 @@ async function initAdminPage() {
         ? `<span class="trend-badge trend-up">+${delta}% ⬆️</span>`
         : `<span class="trend-badge trend-neutral">Baseline</span>`;
 
+      const pStatus = s.placement_status || "Seeking Job";
+      let pBadge = "badge-warning";
+      if (pStatus.toLowerCase() === "placed") pBadge = "badge-success";
+      else if (pStatus.toLowerCase() === "interviewed") pBadge = "badge-primary";
+      else if (pStatus.toLowerCase().includes("not")) pBadge = "badge-danger";
+
+      const salaryText = s.salary_lpa ? `<br><small style="color: #166534; font-weight: 700;">${s.salary_lpa} LPA</small>` : "";
+
       return `
         <tr>
           <td><strong style="color: var(--primary); font-family: monospace;">${s.student_id}</strong></td>
@@ -1262,13 +1274,20 @@ async function initAdminPage() {
             <div style="font-weight: 700; color: var(--secondary);">${s.name}</div>
             <div style="font-size: 0.8rem; color: var(--text-muted);">${s.email}</div>
           </td>
-          <td><span style="font-size: 0.85rem;">${s.degree || "B.Tech Computer Science"}</span></td>
+          <td>
+            <div style="font-size: 0.85rem; font-weight: 600;">${s.degree || "B.Tech ISE (Sem 2)"}</div>
+            ${s.training_program ? `<div style="font-size: 0.75rem; color: var(--text-muted);">${s.training_program}</div>` : ""}
+          </td>
           <td><span class="badge badge-neutral" style="font-weight: 600;">${s.target_role || "Software Engineer"}</span></td>
           <td>
             <div style="font-weight: 800; font-size: 1rem; color: var(--secondary);">${s.score || 0}%</div>
             <span class="badge ${s.tier_badge || 'badge-neutral'}" style="font-size: 0.7rem; padding: 0.1rem 0.35rem;">
               ${(s.readiness_tier || "Tier 2").split(":")[0]}
             </span>
+          </td>
+          <td>
+            <span class="badge ${pBadge}" style="font-size: 0.75rem;">${pStatus}</span>
+            ${salaryText}
           </td>
           <td>${trendHtml}</td>
           <td><span class="timestamp-pill">🕒 ${formatTimestamp(s.timestamp)}</span></td>
@@ -1303,6 +1322,8 @@ async function initAdminPage() {
         s.name.toLowerCase().includes(kw) ||
         s.email.toLowerCase().includes(kw) ||
         (s.target_role && s.target_role.toLowerCase().includes(kw)) ||
+        (s.training_program && s.training_program.toLowerCase().includes(kw)) ||
+        (s.placement_status && s.placement_status.toLowerCase().includes(kw)) ||
         s.student_id.toLowerCase().includes(kw)
       );
       renderTable(filtered);
@@ -1319,6 +1340,8 @@ async function initAdminPage() {
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
         <div><strong>Degree:</strong> ${s.degree || "B.Tech"}</div>
         <div><strong>Target Role:</strong> ${s.target_role || "N/A"}</div>
+        <div><strong>Training Program:</strong> ${s.training_program || "General Coursework"}</div>
+        <div><strong>Placement Status:</strong> ${s.placement_status || "Seeking Job"}${s.salary_lpa ? ` (${s.salary_lpa} LPA)` : ""}</div>
         <div><strong>Overall Alignment:</strong> ${s.score}% (${s.readiness_tier || "Tier 2"})</div>
         <div><strong>Last Assessed:</strong> ${formatTimestamp(s.timestamp)}</div>
       </div>

@@ -1,25 +1,307 @@
 student_id,name,email,skills,degree,target_role,score,initial_score,improvement_delta,timestamp
 STU001,Rahul Sharma,rahul.sharma@example.com,Python:4|SQL:3|Excel:4,B.Tech Computer Science,Junior Data Analyst,78.5,60.0,18.5,2026-09-08T10:00:00Z
-STU002,Priya Patel,priya.patel@example.com,Python:3|FastAPI:2|Git:3,B.Tech Computer Science,Junior Data Analyst,58.3,50.0,8.3,2026-09-08T10:00:00Z
-STU003,Amit Kumar,amit.kumar@example.com,HTML:5|CSS:4|JavaScript:3,B.Tech Computer Science,Junior Data Analyst,82.0,70.0,12.0,2026-09-08T10:00:00Z
-STU004,Sneha Reddy,sneha.reddy@example.com,Python:4|Statistics:3|SQL:2,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU005,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-09T14:46:34Z
-STU006,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU007,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU008,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU009,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU010,lohitha,lohitanu16@gmail.com,Python:2|SQL:4|Power BI:1|JavaScript:1|Git:1|Docker:1,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU011,lohitha,lohitanu16@gmail.com,Python:3|SQL:2|Power BI:3|JavaScript:1|Git:1|Docker:1,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU012,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU013,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU014,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech IT,Full Stack Web Developer,0.0,65.0,-65.0,2026-09-09T14:46:34Z
-STU015,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU016,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU017,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU018,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU019,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU020,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU021,lohitha,lohitanu16@gmail.com,Python:3|SQL:4|Power BI:1|JavaScript:1|Git:5|Docker:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU022,lohitha,lohitanu16@gmail.com,Python:2|SQL:2|Power BI:1|JavaScript:1|Git:5|Docker:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU023,lohitha,lohitanu16@gmail.com,Python:5|SQL:3|Power BI:5|JavaScript:3|Git:5|Docker:1,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
-STU024,Alex Miller,alex.progression@example.com,Python:5|SQL:5,B.Tech Computer Science,Junior Python Developer,40.0,20.0,20.0,2026-09-09T14:46:34Z
+S001,Ananya,ananya.s001@skilltrack.edu,Communication:5|JavaScript:3|User Research:5|Figma:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-01T09:00:00Z
+S002,Rahul,rahul.s002@skilltrack.edu,SQL:3|User Research:3|HTML:5,B.Tech ISE (Sem 2),Web Developer,25.0,15.0,10.0,2026-09-01T14:17:00Z
+S003,Priya,priya.s003@skilltrack.edu,User Research:3|Excel:2|Communication:2,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-01T19:34:00Z
+S004,Kiran,kiran.s004@skilltrack.edu,Prototyping:5|HTML:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-02T00:51:00Z
+S005,Meera,meera.s005@skilltrack.edu,DSA:3|Wireframing:2,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-02T05:08:00Z
+S006,Arjun,arjun.s006@skilltrack.edu,Problem Solving:3|DSA:2|Wireframing:2|User Research:5,B.Tech ISE (Sem 2),Software Developer,10.0,10.0,10.0,2026-09-02T10:25:00Z
+S007,Kavya,kavya.s007@skilltrack.edu,CSS:2|Excel:3|DSA:5|Data Analysis:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-02T15:42:00Z
+S008,Rohit,rohit.s008@skilltrack.edu,CSS:3|Machine Learning:3|Data Analysis:5|HTML:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-01T23:59:00Z
+S009,Sneha,sneha.s009@skilltrack.edu,Java:3|Prototyping:2|React:2,B.Tech ISE (Sem 2),Web Developer,16.7,16.7,0.0,2026-09-02T04:16:00Z
+S010,Vikram,vikram.s010@skilltrack.edu,SQL:2|JavaScript:5|DSA:5,B.Tech ISE (Sem 2),Software Developer,33.3,16.3,17.0,2026-09-02T09:33:00Z
+S011,Divya,divya.s011@skilltrack.edu,HTML:3|Data Analysis:2|Figma:2|Prototyping:2,B.Tech ISE (Sem 2),UI/UX Designer,25.0,10.0,20.0,2026-09-02T14:50:00Z
+S012,Aman,aman.s012@skilltrack.edu,HTML:2|Communication:2|Problem Solving:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-02T19:07:00Z
+S100,Rachel,rachel.s100@skilltrack.edu,Machine Learning:3|User Research:5|Wireframing:5|Figma:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-03T00:24:00Z
+S101,Jennifer,jennifer.s101@skilltrack.edu,Machine Learning:2|Figma:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-03T05:41:00Z
+S102,Scott,scott.s102@skilltrack.edu,Data Analysis:2|Java:5|Excel:2,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-02T13:58:00Z
+S103,Jeffrey,jeffrey.s103@skilltrack.edu,React:5|JavaScript:3,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-02T18:15:00Z
+S104,Douglas,douglas.s104@skilltrack.edu,Machine Learning:2|HTML:5|JavaScript:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-02T23:32:00Z
+S105,Morgan,morgan.s105@skilltrack.edu,Java:2|Power BI:2|React:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-03T04:49:00Z
+S106,Kyle,kyle.s106@skilltrack.edu,Prototyping:5|Problem Solving:2|Communication:5,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-03T09:06:00Z
+S107,Laura,laura.s107@skilltrack.edu,User Research:5|DSA:3,B.Tech ISE (Sem 2),Software Developer,15.0,15.0,0.0,2026-09-03T14:23:00Z
+S108,Randall,randall.s108@skilltrack.edu,React:3|Git:3|Communication:2|Excel:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-03T19:40:00Z
+S109,Julia,julia.s109@skilltrack.edu,User Research:3|Data Analysis:5|SQL:2,B.Tech ISE (Sem 2),Data Analyst,12.5,12.5,0.0,2026-09-03T03:57:00Z
+S110,Pamela,pamela.s110@skilltrack.edu,Problem Solving:3|DSA:2|Data Visualization:5,B.Tech ISE (Sem 2),Software Developer,10.0,10.0,10.0,2026-09-03T08:14:00Z
+S111,Rebecca,rebecca.s111@skilltrack.edu,DSA:2|Wireframing:3|SQL:2,B.Tech ISE (Sem 2),UI/UX Designer,18.8,10.0,17.0,2026-09-03T13:31:00Z
+S112,Rebecca,rebecca.s112@skilltrack.edu,JavaScript:3|Figma:2|Prototyping:5|Problem Solving:2,B.Tech ISE (Sem 2),UI/UX Designer,37.5,37.5,0.0,2026-09-03T18:48:00Z
+S113,Andrew,andrew.s113@skilltrack.edu,Communication:3|React:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-03T23:05:00Z
+S114,Judy,judy.s114@skilltrack.edu,DSA:5|Java:2|User Research:5|JavaScript:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-04T04:22:00Z
+S115,Destiny,destiny.s115@skilltrack.edu,SQL:3|DSA:3|Git:2|Data Visualization:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-04T09:39:00Z
+S116,Martin,martin.s116@skilltrack.edu,CSS:5|Java:2|Communication:2|React:2,B.Tech ISE (Sem 2),Software Developer,10.0,10.0,0.0,2026-09-03T17:56:00Z
+S117,Laura,laura.s117@skilltrack.edu,Python:3|Machine Learning:2|Problem Solving:3|Prototyping:2,B.Tech ISE (Sem 2),Data Analyst,18.8,18.8,0.0,2026-09-03T22:13:00Z
+S118,Carolyn,carolyn.s118@skilltrack.edu,Figma:2|Problem Solving:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-04T03:30:00Z
+S119,Shawn,shawn.s119@skilltrack.edu,Prototyping:5|Communication:3|React:5,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-04T08:47:00Z
+S120,Lisa,lisa.s120@skilltrack.edu,Communication:3|Data Visualization:3|User Research:3,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-04T13:04:00Z
+S121,Holly,holly.s121@skilltrack.edu,Machine Learning:3|SQL:5|Data Visualization:2|JavaScript:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-04T18:21:00Z
+S122,Mary,mary.s122@skilltrack.edu,Prototyping:2|Communication:3|HTML:5|Data Analysis:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-04T23:38:00Z
+S123,Tammie,tammie.s123@skilltrack.edu,SQL:2|JavaScript:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-04T07:55:00Z
+S124,Cynthia,cynthia.s124@skilltrack.edu,React:2|Prototyping:3|DSA:3,B.Tech ISE (Sem 2),Web Developer,16.7,16.7,0.0,2026-09-04T12:12:00Z
+S125,Richard,richard.s125@skilltrack.edu,Data Analysis:3|Python:5|HTML:3|React:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-04T17:29:00Z
+S126,Samuel,samuel.s126@skilltrack.edu,React:5|Wireframing:3|HTML:2,B.Tech ISE (Sem 2),UI/UX Designer,18.8,10.8,8.0,2026-09-04T22:46:00Z
+S127,Stacey,stacey.s127@skilltrack.edu,Data Visualization:3|Wireframing:3|User Research:5,B.Tech ISE (Sem 2),UI/UX Designer,43.8,43.8,0.0,2026-09-05T03:03:00Z
+S128,Gregory,gregory.s128@skilltrack.edu,Figma:5|Git:2|Excel:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-05T08:20:00Z
+S129,Sarah,sarah.s129@skilltrack.edu,Python:5|JavaScript:3|User Research:2|Data Visualization:5,B.Tech ISE (Sem 2),Software Developer,20.0,10.0,11.0,2026-09-05T13:37:00Z
+S130,Douglas,douglas.s130@skilltrack.edu,Java:2|Git:3|HTML:2|Problem Solving:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-04T21:54:00Z
+S131,James,james.s131@skilltrack.edu,Data Visualization:5|Machine Learning:2,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-05T02:11:00Z
+S132,Aaron,aaron.s132@skilltrack.edu,JavaScript:2|SQL:3|React:2|Data Visualization:3,B.Tech ISE (Sem 2),Data Analyst,18.8,10.8,8.0,2026-09-05T07:28:00Z
+S133,Michelle,michelle.s133@skilltrack.edu,Communication:5|Wireframing:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,10.0,16.0,2026-09-05T12:45:00Z
+S134,Raymond,raymond.s134@skilltrack.edu,DSA:3|Machine Learning:5,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-05T17:02:00Z
+S135,Danielle,danielle.s135@skilltrack.edu,Power BI:5|Data Visualization:5|Excel:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-05T22:19:00Z
+S136,Alejandro,alejandro.s136@skilltrack.edu,User Research:3|JavaScript:5|Wireframing:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-06T03:36:00Z
+S137,James,james.s137@skilltrack.edu,Python:3|Figma:5|DSA:3,B.Tech ISE (Sem 2),Software Developer,30.0,19.0,11.0,2026-09-05T11:53:00Z
+S138,Kenneth,kenneth.s138@skilltrack.edu,Data Visualization:5|Prototyping:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-05T16:10:00Z
+S139,Ellen,ellen.s139@skilltrack.edu,Data Visualization:2|HTML:3|User Research:2|Prototyping:5,B.Tech ISE (Sem 2),UI/UX Designer,41.7,29.7,12.0,2026-09-05T21:27:00Z
+S140,Andrew,andrew.s140@skilltrack.edu,Figma:5|Excel:5,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-06T02:44:00Z
+S141,Anne,anne.s141@skilltrack.edu,Problem Solving:2|Data Visualization:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-06T07:01:00Z
+S142,Elijah,elijah.s142@skilltrack.edu,React:5|Communication:3|Git:5|User Research:2,B.Tech ISE (Sem 2),Web Developer,25.0,25.0,0.0,2026-09-06T12:18:00Z
+S143,Brittany,brittany.s143@skilltrack.edu,Data Visualization:2|Machine Learning:5|Problem Solving:5|React:5,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-06T17:35:00Z
+S144,Katherine,katherine.s144@skilltrack.edu,React:3|Python:3|Java:3|Machine Learning:5,B.Tech ISE (Sem 2),Software Developer,30.0,30.0,0.0,2026-09-06T01:52:00Z
+S145,Donald,donald.s145@skilltrack.edu,Java:5|JavaScript:2|Problem Solving:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-06T06:09:00Z
+S146,Gilbert,gilbert.s146@skilltrack.edu,Prototyping:3|Git:3|JavaScript:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-06T11:26:00Z
+S147,Timothy,timothy.s147@skilltrack.edu,HTML:5|User Research:3|JavaScript:3,B.Tech ISE (Sem 2),Web Developer,43.8,24.8,19.0,2026-09-06T16:43:00Z
+S148,Anthony,anthony.s148@skilltrack.edu,Python:3|SQL:2,B.Tech ISE (Sem 2),Data Analyst,31.2,19.2,12.0,2026-09-06T21:00:00Z
+S149,Robert,robert.s149@skilltrack.edu,React:3|Data Analysis:3,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-07T02:17:00Z
+S150,Jennifer,jennifer.s150@skilltrack.edu,Machine Learning:2|User Research:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-07T07:34:00Z
+S151,David,david.s151@skilltrack.edu,Power BI:3|SQL:5|Prototyping:3,B.Tech ISE (Sem 2),UI/UX Designer,18.8,10.8,8.0,2026-09-06T15:51:00Z
+S152,Michael,michael.s152@skilltrack.edu,Problem Solving:2|Communication:5|Data Analysis:3,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-06T20:08:00Z
+S153,Matthew,matthew.s153@skilltrack.edu,Problem Solving:5|Java:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-07T01:25:00Z
+S154,Jose,jose.s154@skilltrack.edu,Data Analysis:5|Java:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-07T06:42:00Z
+S155,Edward,edward.s155@skilltrack.edu,Problem Solving:3|Data Analysis:3|Power BI:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-07T11:59:00Z
+S156,Janice,janice.s156@skilltrack.edu,Communication:2|SQL:5|HTML:2,B.Tech ISE (Sem 2),Web Developer,12.5,12.5,0.0,2026-09-07T16:16:00Z
+S157,Theresa,theresa.s157@skilltrack.edu,Prototyping:2|Wireframing:3|Java:3,B.Tech ISE (Sem 2),Software Developer,15.0,10.0,15.0,2026-09-07T21:33:00Z
+S158,Keith,keith.s158@skilltrack.edu,Communication:2|SQL:2|Prototyping:3,B.Tech ISE (Sem 2),Data Analyst,12.5,10.0,12.0,2026-09-07T05:50:00Z
+S159,Elizabeth,elizabeth.s159@skilltrack.edu,Machine Learning:5|HTML:3|Excel:3|Data Visualization:2,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-07T10:07:00Z
+S160,Michele,michele.s160@skilltrack.edu,Data Analysis:5|DSA:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-07T15:24:00Z
+S161,Matthew,matthew.s161@skilltrack.edu,Java:5|CSS:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-07T20:41:00Z
+S162,Joseph,joseph.s162@skilltrack.edu,CSS:2|Data Analysis:5|JavaScript:3|Communication:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-08T01:58:00Z
+S163,Leonard,leonard.s163@skilltrack.edu,Data Visualization:2|Git:5,B.Tech ISE (Sem 2),Software Developer,20.0,20.0,0.0,2026-09-08T06:15:00Z
+S164,Michael,michael.s164@skilltrack.edu,Figma:3|CSS:2,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-08T11:32:00Z
+S165,Brian,brian.s165@skilltrack.edu,Excel:3|JavaScript:3|Wireframing:5,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-07T19:49:00Z
+S166,Steven,steven.s166@skilltrack.edu,Data Analysis:5|Java:2|Python:2,B.Tech ISE (Sem 2),Software Developer,20.0,20.0,0.0,2026-09-08T00:06:00Z
+S167,Todd,todd.s167@skilltrack.edu,JavaScript:3|Excel:5|Data Analysis:2|CSS:2,B.Tech ISE (Sem 2),Data Analyst,25.0,25.0,0.0,2026-09-08T05:23:00Z
+S168,Laura,laura.s168@skilltrack.edu,CSS:3|User Research:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-08T10:40:00Z
+S169,Kimberly,kimberly.s169@skilltrack.edu,Excel:3|HTML:2|DSA:5|Data Visualization:5,B.Tech ISE (Sem 2),Web Developer,12.5,10.0,12.5,2026-09-08T15:57:00Z
+S170,Samuel,samuel.s170@skilltrack.edu,CSS:3|SQL:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-08T20:14:00Z
+S171,Larry,larry.s171@skilltrack.edu,Problem Solving:5|Data Analysis:2|Prototyping:2|Communication:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-09T01:31:00Z
+S172,Teresa,teresa.s172@skilltrack.edu,Communication:5|CSS:5|Python:5|Figma:5,B.Tech ISE (Sem 2),Software Developer,20.0,20.0,0.0,2026-09-08T09:48:00Z
+S173,Diane,diane.s173@skilltrack.edu,Git:5|React:5,B.Tech ISE (Sem 2),Web Developer,25.0,11.0,14.0,2026-09-08T14:05:00Z
+S174,Michelle,michelle.s174@skilltrack.edu,Communication:2|Python:3,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-08T19:22:00Z
+S175,Ryan,ryan.s175@skilltrack.edu,Wireframing:2|Data Visualization:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-09T00:39:00Z
+S176,Clifford,clifford.s176@skilltrack.edu,Power BI:5|Data Analysis:3|Data Visualization:2|Wireframing:3,B.Tech ISE (Sem 2),Data Analyst,25.0,25.0,0.0,2026-09-09T05:56:00Z
+S177,Lisa,lisa.s177@skilltrack.edu,React:3|Figma:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,10.0,21.0,2026-09-09T10:13:00Z
+S178,Robert,robert.s178@skilltrack.edu,Power BI:3|Data Analysis:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-09T15:30:00Z
+S179,Kurt,kurt.s179@skilltrack.edu,User Research:3|JavaScript:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-08T23:47:00Z
+S180,Katrina,katrina.s180@skilltrack.edu,Git:5|DSA:3|Communication:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-09T04:04:00Z
+S181,Connie,connie.s181@skilltrack.edu,React:5|DSA:2,B.Tech ISE (Sem 2),Web Developer,25.0,10.0,17.0,2026-09-09T09:21:00Z
+S182,Norman,norman.s182@skilltrack.edu,React:2|Problem Solving:3|HTML:3,B.Tech ISE (Sem 2),Web Developer,35.4,21.4,14.0,2026-09-09T14:38:00Z
+S183,Rachel,rachel.s183@skilltrack.edu,Figma:5|Wireframing:2|Java:5|Python:3,B.Tech ISE (Sem 2),Data Analyst,18.8,18.8,0.0,2026-09-09T19:55:00Z
+S184,Kathleen,kathleen.s184@skilltrack.edu,Excel:2|Problem Solving:2|CSS:3,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-10T00:12:00Z
+S185,Jessica,jessica.s185@skilltrack.edu,JavaScript:2|HTML:3,B.Tech ISE (Sem 2),Web Developer,31.2,31.2,0.0,2026-09-10T05:29:00Z
+S186,Joseph,joseph.s186@skilltrack.edu,Python:2|Data Analysis:2|Git:3|JavaScript:3,B.Tech ISE (Sem 2),Software Developer,30.0,15.0,15.0,2026-09-09T13:46:00Z
+S187,Scott,scott.s187@skilltrack.edu,Wireframing:3|Figma:5|Communication:5,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-09T18:03:00Z
+S188,Brianna,brianna.s188@skilltrack.edu,Excel:3|User Research:5|Python:3,B.Tech ISE (Sem 2),Data Analyst,37.5,37.5,0.0,2026-09-09T23:20:00Z
+S189,Richard,richard.s189@skilltrack.edu,Prototyping:3|Wireframing:3,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-10T04:37:00Z
+S190,Raymond,raymond.s190@skilltrack.edu,DSA:5|User Research:5|Machine Learning:2|Data Analysis:5,B.Tech ISE (Sem 2),Software Developer,20.0,10.0,12.0,2026-09-10T09:54:00Z
+S191,Angela,angela.s191@skilltrack.edu,Python:5|Prototyping:2|Data Visualization:2|CSS:2,B.Tech ISE (Sem 2),UI/UX Designer,12.5,10.0,8.0,2026-09-10T14:11:00Z
+S192,Jimmy,jimmy.s192@skilltrack.edu,Figma:2|Communication:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-10T19:28:00Z
+S193,Kayla,kayla.s193@skilltrack.edu,Data Analysis:5|Wireframing:2|Java:5|Power BI:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-10T03:45:00Z
+S194,Megan,megan.s194@skilltrack.edu,SQL:3|Wireframing:3,B.Tech ISE (Sem 2),Data Analyst,18.8,10.0,9.0,2026-09-10T08:02:00Z
+S195,David,david.s195@skilltrack.edu,Data Visualization:2|Power BI:2|React:5|JavaScript:5,B.Tech ISE (Sem 2),Web Developer,50.0,50.0,0.0,2026-09-10T13:19:00Z
+S196,Ryan,ryan.s196@skilltrack.edu,Data Visualization:2|Problem Solving:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-10T18:36:00Z
+S197,Heather,heather.s197@skilltrack.edu,Data Visualization:2|User Research:2|Java:5|JavaScript:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-10T23:53:00Z
+S198,Krista,krista.s198@skilltrack.edu,Communication:5|JavaScript:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-11T04:10:00Z
+S199,Jenna,jenna.s199@skilltrack.edu,Problem Solving:3|SQL:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-11T09:27:00Z
+S200,Erica,erica.s200@skilltrack.edu,User Research:5|Data Analysis:5|Git:2|JavaScript:2,B.Tech ISE (Sem 2),Software Developer,13.3,13.3,0.0,2026-09-10T17:44:00Z
+S201,Daniel,daniel.s201@skilltrack.edu,Wireframing:2|JavaScript:5|SQL:2,B.Tech ISE (Sem 2),Data Analyst,12.5,12.5,0.0,2026-09-10T22:01:00Z
+S202,Joanna,joanna.s202@skilltrack.edu,Power BI:5|Wireframing:5|CSS:3|Java:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,10.0,18.0,2026-09-11T03:18:00Z
+S203,Jeffrey,jeffrey.s203@skilltrack.edu,Prototyping:3|Machine Learning:5|Data Analysis:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-11T08:35:00Z
+S204,Maria,maria.s204@skilltrack.edu,Problem Solving:3|React:5,B.Tech ISE (Sem 2),Web Developer,25.0,25.0,0.0,2026-09-11T13:52:00Z
+S205,Morgan,morgan.s205@skilltrack.edu,Data Analysis:2|HTML:3|Excel:5,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-11T18:09:00Z
+S206,Laura,laura.s206@skilltrack.edu,Problem Solving:3|Power BI:2|User Research:5|Wireframing:2,B.Tech ISE (Sem 2),Data Analyst,16.7,10.0,16.7,2026-09-11T23:26:00Z
+S207,Robert,robert.s207@skilltrack.edu,SQL:5|Python:3|Data Analysis:5|JavaScript:5,B.Tech ISE (Sem 2),Data Analyst,43.8,43.8,0.0,2026-09-11T07:43:00Z
+S208,Debra,debra.s208@skilltrack.edu,Python:2|Communication:3|DSA:2|Data Visualization:2,B.Tech ISE (Sem 2),Data Analyst,12.5,12.5,0.0,2026-09-11T12:00:00Z
+S209,Jeremy,jeremy.s209@skilltrack.edu,Communication:2|Python:5|CSS:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-11T17:17:00Z
+S210,Danielle,danielle.s210@skilltrack.edu,Python:5|CSS:3|Problem Solving:5,B.Tech ISE (Sem 2),Data Analyst,25.0,25.0,0.0,2026-09-11T22:34:00Z
+S211,Joshua,joshua.s211@skilltrack.edu,User Research:3|CSS:3|Machine Learning:2,B.Tech ISE (Sem 2),UI/UX Designer,25.0,10.0,20.0,2026-09-12T03:51:00Z
+S212,John,john.s212@skilltrack.edu,Data Analysis:5|User Research:5|Communication:3|Machine Learning:5,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-12T08:08:00Z
+S213,Catherine,catherine.s213@skilltrack.edu,Problem Solving:2|DSA:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-12T13:25:00Z
+S214,Stephen,stephen.s214@skilltrack.edu,Data Visualization:2|Figma:3,B.Tech ISE (Sem 2),UI/UX Designer,18.8,10.0,16.0,2026-09-11T21:42:00Z
+S215,Tony,tony.s215@skilltrack.edu,User Research:3|React:2|SQL:2|Wireframing:2,B.Tech ISE (Sem 2),Software Developer,13.3,13.3,0.0,2026-09-12T02:59:00Z
+S216,Wendy,wendy.s216@skilltrack.edu,Data Visualization:3|User Research:3|Python:2|Java:3,B.Tech ISE (Sem 2),UI/UX Designer,25.0,10.0,22.0,2026-09-12T07:16:00Z
+S217,Paula,paula.s217@skilltrack.edu,JavaScript:2|Data Analysis:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-12T12:33:00Z
+S218,David,david.s218@skilltrack.edu,User Research:2|Data Visualization:3|Wireframing:3,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-12T17:50:00Z
+S219,Kim,kim.s219@skilltrack.edu,Machine Learning:2|Figma:3|Power BI:2,B.Tech ISE (Sem 2),Data Analyst,16.7,16.7,0.0,2026-09-12T22:07:00Z
+S220,Thomas,thomas.s220@skilltrack.edu,CSS:3|Excel:3,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-13T03:24:00Z
+S221,Rachael,rachael.s221@skilltrack.edu,Wireframing:2|HTML:2,B.Tech ISE (Sem 2),Web Developer,12.5,12.5,0.0,2026-09-12T11:41:00Z
+S222,Robert,robert.s222@skilltrack.edu,User Research:3|Communication:5|Problem Solving:5|Data Visualization:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-12T16:58:00Z
+S223,Angela,angela.s223@skilltrack.edu,DSA:2|SQL:2|Git:3|HTML:3,B.Tech ISE (Sem 2),Web Developer,18.8,18.8,0.0,2026-09-12T21:15:00Z
+S224,Michelle,michelle.s224@skilltrack.edu,Java:2|Python:2|Wireframing:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-13T02:32:00Z
+S225,Leah,leah.s225@skilltrack.edu,Java:3|Machine Learning:5|Prototyping:3|Power BI:5,B.Tech ISE (Sem 2),Software Developer,15.0,15.0,0.0,2026-09-13T07:49:00Z
+S226,Brandon,brandon.s226@skilltrack.edu,HTML:2|React:3|Git:3|JavaScript:2,B.Tech ISE (Sem 2),Web Developer,50.0,50.0,0.0,2026-09-13T12:06:00Z
+S227,Theresa,theresa.s227@skilltrack.edu,React:3|Data Analysis:3|HTML:2|JavaScript:5,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-13T17:23:00Z
+S228,George,george.s228@skilltrack.edu,SQL:2|Python:5|Wireframing:3,B.Tech ISE (Sem 2),Software Developer,33.3,17.3,16.0,2026-09-13T01:40:00Z
+S229,Connie,connie.s229@skilltrack.edu,React:3|Data Analysis:2,B.Tech ISE (Sem 2),Web Developer,25.0,25.0,0.0,2026-09-13T06:57:00Z
+S230,David,david.s230@skilltrack.edu,Data Visualization:2|JavaScript:3|Problem Solving:5,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-13T11:14:00Z
+S231,Larry,larry.s231@skilltrack.edu,Figma:3|Communication:5|Machine Learning:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-13T16:31:00Z
+S232,Donna,donna.s232@skilltrack.edu,Communication:5|HTML:2|Problem Solving:3|Power BI:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-13T21:48:00Z
+S233,Christine,christine.s233@skilltrack.edu,SQL:3|Git:3,B.Tech ISE (Sem 2),Software Developer,40.0,40.0,0.0,2026-09-14T02:05:00Z
+S234,Melissa,melissa.s234@skilltrack.edu,Data Visualization:3|Communication:3|User Research:3,B.Tech ISE (Sem 2),UI/UX Designer,25.0,10.0,15.0,2026-09-14T07:22:00Z
+S235,Jennifer,jennifer.s235@skilltrack.edu,Git:2|Java:3|Excel:3,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-13T15:39:00Z
+S236,Samantha,samantha.s236@skilltrack.edu,Prototyping:5|Wireframing:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-13T20:56:00Z
+S237,Travis,travis.s237@skilltrack.edu,Data Analysis:5|User Research:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,17.0,8.0,2026-09-14T01:13:00Z
+S238,Louis,louis.s238@skilltrack.edu,SQL:5|Communication:2,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-14T06:30:00Z
+S239,Rodney,rodney.s239@skilltrack.edu,Wireframing:3|Problem Solving:2|Prototyping:5,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-14T11:47:00Z
+S240,Laura,laura.s240@skilltrack.edu,Power BI:3|DSA:3|Problem Solving:2,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-14T16:04:00Z
+S241,Maria,maria.s241@skilltrack.edu,Data Visualization:2|Machine Learning:3|Wireframing:3|Data Analysis:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-14T21:21:00Z
+S242,Theodore,theodore.s242@skilltrack.edu,CSS:5|Problem Solving:3|User Research:3|Data Visualization:2,B.Tech ISE (Sem 2),Web Developer,25.0,25.0,0.0,2026-09-14T05:38:00Z
+S243,Joshua,joshua.s243@skilltrack.edu,Power BI:3|React:3|HTML:2,B.Tech ISE (Sem 2),Web Developer,37.5,25.5,12.0,2026-09-14T10:55:00Z
+S244,Kristen,kristen.s244@skilltrack.edu,Figma:3|Wireframing:3,B.Tech ISE (Sem 2),UI/UX Designer,37.5,37.5,0.0,2026-09-14T15:12:00Z
+S245,Molly,molly.s245@skilltrack.edu,Excel:5|React:5|HTML:5,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-14T20:29:00Z
+S246,Andre,andre.s246@skilltrack.edu,Problem Solving:3|Java:5|Communication:3,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-15T01:46:00Z
+S247,Elizabeth,elizabeth.s247@skilltrack.edu,JavaScript:5|Java:5|Figma:5|Excel:2,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-15T06:03:00Z
+S248,Kenneth,kenneth.s248@skilltrack.edu,Java:3|Problem Solving:5|Git:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-15T11:20:00Z
+S249,Tonya,tonya.s249@skilltrack.edu,Data Analysis:3|Wireframing:5|Data Visualization:2,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-14T19:37:00Z
+S250,Adam,adam.s250@skilltrack.edu,Python:3|Communication:5|Machine Learning:5|React:5,B.Tech ISE (Sem 2),Web Developer,25.0,25.0,0.0,2026-09-15T00:54:00Z
+S251,Ricky,ricky.s251@skilltrack.edu,Data Visualization:2|Excel:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-15T05:11:00Z
+S252,Evelyn,evelyn.s252@skilltrack.edu,Data Analysis:3|Machine Learning:3|DSA:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-15T10:28:00Z
+S253,Barbara,barbara.s253@skilltrack.edu,HTML:5|Data Analysis:3|SQL:2,B.Tech ISE (Sem 2),Data Analyst,12.5,10.0,12.5,2026-09-15T15:45:00Z
+S254,Matthew,matthew.s254@skilltrack.edu,Git:3|HTML:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-15T20:02:00Z
+S255,Joyce,joyce.s255@skilltrack.edu,User Research:5|Machine Learning:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-16T01:19:00Z
+S256,Diane,diane.s256@skilltrack.edu,Figma:5|Git:2|DSA:2,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-15T09:36:00Z
+S257,Stephen,stephen.s257@skilltrack.edu,Communication:3|Data Visualization:2|Git:5,B.Tech ISE (Sem 2),Software Developer,20.0,20.0,0.0,2026-09-15T14:53:00Z
+S258,Kayla,kayla.s258@skilltrack.edu,Power BI:2|HTML:5|Machine Learning:5|Excel:3,B.Tech ISE (Sem 2),Data Analyst,35.4,17.4,18.0,2026-09-15T19:10:00Z
+S259,Michael,michael.s259@skilltrack.edu,Data Visualization:3|SQL:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-16T00:27:00Z
+S260,Shelley,shelley.s260@skilltrack.edu,HTML:5|Git:2|SQL:2|Power BI:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-16T05:44:00Z
+S261,Marcus,marcus.s261@skilltrack.edu,Problem Solving:5|HTML:5,B.Tech ISE (Sem 2),Web Developer,25.0,10.0,18.0,2026-09-16T10:01:00Z
+S262,Sheri,sheri.s262@skilltrack.edu,Data Visualization:3|JavaScript:2|React:3|Machine Learning:2,B.Tech ISE (Sem 2),Web Developer,37.5,17.5,20.0,2026-09-16T15:18:00Z
+S263,Thomas,thomas.s263@skilltrack.edu,Power BI:3|HTML:3,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-15T23:35:00Z
+S264,Richard,richard.s264@skilltrack.edu,React:2|User Research:3|CSS:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-16T04:52:00Z
+S265,Seth,seth.s265@skilltrack.edu,User Research:5|Java:3,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-16T09:09:00Z
+S266,Denise,denise.s266@skilltrack.edu,Data Visualization:3|Wireframing:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-16T14:26:00Z
+S267,Samantha,samantha.s267@skilltrack.edu,Machine Learning:5|User Research:2|Communication:3|React:3,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-16T19:43:00Z
+S268,Charles,charles.s268@skilltrack.edu,Data Visualization:3|Git:3|Power BI:2|DSA:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-17T00:00:00Z
+S269,Kari,kari.s269@skilltrack.edu,Machine Learning:3|Wireframing:5|Power BI:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-17T05:17:00Z
+S270,Carl,carl.s270@skilltrack.edu,Python:2|Data Analysis:3|HTML:2|Java:2,B.Tech ISE (Sem 2),Software Developer,20.0,20.0,0.0,2026-09-16T13:34:00Z
+S271,Devon,devon.s271@skilltrack.edu,Excel:5|Git:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-16T18:51:00Z
+S272,Jerry,jerry.s272@skilltrack.edu,Data Visualization:2|Prototyping:2,B.Tech ISE (Sem 2),UI/UX Designer,12.5,12.5,0.0,2026-09-16T23:08:00Z
+S273,Jennifer,jennifer.s273@skilltrack.edu,Communication:3|Prototyping:2,B.Tech ISE (Sem 2),UI/UX Designer,12.5,12.5,0.0,2026-09-17T04:25:00Z
+S274,Rachel,rachel.s274@skilltrack.edu,CSS:3|SQL:5|Java:3,B.Tech ISE (Sem 2),Software Developer,35.0,13.0,22.0,2026-09-17T09:42:00Z
+S275,Jeremiah,jeremiah.s275@skilltrack.edu,Prototyping:2|HTML:5|Machine Learning:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-17T14:59:00Z
+S276,Denise,denise.s276@skilltrack.edu,HTML:3|Python:2,B.Tech ISE (Sem 2),Data Analyst,12.5,10.0,12.5,2026-09-17T19:16:00Z
+S277,Martin,martin.s277@skilltrack.edu,Git:5|JavaScript:3|Wireframing:2,B.Tech ISE (Sem 2),Web Developer,18.8,10.0,18.0,2026-09-17T03:33:00Z
+S278,Susan,susan.s278@skilltrack.edu,Prototyping:2|Python:2|Java:3,B.Tech ISE (Sem 2),UI/UX Designer,12.5,12.5,0.0,2026-09-17T08:50:00Z
+S279,Kristin,kristin.s279@skilltrack.edu,JavaScript:5|Communication:5,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-17T13:07:00Z
+S280,Michael,michael.s280@skilltrack.edu,Java:3|Power BI:2,B.Tech ISE (Sem 2),Data Analyst,16.7,16.7,0.0,2026-09-17T18:24:00Z
+S281,Carolyn,carolyn.s281@skilltrack.edu,Figma:5|Data Visualization:5,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-17T23:41:00Z
+S282,Christopher,christopher.s282@skilltrack.edu,JavaScript:3|Power BI:3,B.Tech ISE (Sem 2),Web Developer,18.8,10.0,12.0,2026-09-18T04:58:00Z
+S283,Rachel,rachel.s283@skilltrack.edu,Wireframing:5|Data Visualization:5|Python:5,B.Tech ISE (Sem 2),Data Analyst,25.0,10.0,21.0,2026-09-18T09:15:00Z
+S284,Steven,steven.s284@skilltrack.edu,Problem Solving:3|DSA:2|Java:5,B.Tech ISE (Sem 2),Software Developer,30.0,19.0,11.0,2026-09-17T17:32:00Z
+S285,Luke,luke.s285@skilltrack.edu,Wireframing:5|Machine Learning:5|Excel:5|HTML:2,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-17T22:49:00Z
+S286,Andrew,andrew.s286@skilltrack.edu,Java:2|Git:5|React:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-18T03:06:00Z
+S287,Jennifer,jennifer.s287@skilltrack.edu,Java:5|SQL:3,B.Tech ISE (Sem 2),Data Analyst,18.8,18.8,0.0,2026-09-18T08:23:00Z
+S288,David,david.s288@skilltrack.edu,Wireframing:3|Machine Learning:5|DSA:3,B.Tech ISE (Sem 2),UI/UX Designer,18.8,18.8,0.0,2026-09-18T13:40:00Z
+S289,Steven,steven.s289@skilltrack.edu,CSS:3|User Research:2|Wireframing:2|React:5,B.Tech ISE (Sem 2),Web Developer,43.8,43.8,0.0,2026-09-18T18:57:00Z
+S290,Brenda,brenda.s290@skilltrack.edu,Prototyping:3|Data Analysis:2|HTML:2,B.Tech ISE (Sem 2),Web Developer,12.5,10.0,9.0,2026-09-18T23:14:00Z
+S291,William,william.s291@skilltrack.edu,HTML:2|JavaScript:3|Problem Solving:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-18T07:31:00Z
+S292,Patrick,patrick.s292@skilltrack.edu,React:5|Figma:2|DSA:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-18T12:48:00Z
+S293,Margaret,margaret.s293@skilltrack.edu,Problem Solving:5|Python:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-18T17:05:00Z
+S294,Jesus,jesus.s294@skilltrack.edu,Communication:2|React:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-18T22:22:00Z
+S295,Dana,dana.s295@skilltrack.edu,Python:5|CSS:5|Power BI:2|Machine Learning:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-19T03:39:00Z
+S296,Katrina,katrina.s296@skilltrack.edu,Prototyping:3|Git:3|Python:2,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-19T08:56:00Z
+S297,Carlos,carlos.s297@skilltrack.edu,HTML:5|Git:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-19T13:13:00Z
+S298,Kimberly,kimberly.s298@skilltrack.edu,Communication:3|Prototyping:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-18T21:30:00Z
+S299,William,william.s299@skilltrack.edu,Java:2|Power BI:2,B.Tech ISE (Sem 2),Data Analyst,16.7,10.0,10.0,2026-09-19T02:47:00Z
+S300,Linda,linda.s300@skilltrack.edu,CSS:2|Wireframing:2|User Research:2,B.Tech ISE (Sem 2),Web Developer,12.5,12.5,0.0,2026-09-19T07:04:00Z
+S301,Scott,scott.s301@skilltrack.edu,Power BI:3|Problem Solving:5|Figma:3|SQL:3,B.Tech ISE (Sem 2),Software Developer,20.0,10.0,11.0,2026-09-19T12:21:00Z
+S302,Marco,marco.s302@skilltrack.edu,Machine Learning:5|CSS:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-19T17:38:00Z
+S303,Danielle,danielle.s303@skilltrack.edu,Machine Learning:2|Git:5|Problem Solving:5|Figma:3,B.Tech ISE (Sem 2),Software Developer,20.0,11.0,9.0,2026-09-19T22:55:00Z
+S304,Zoe,zoe.s304@skilltrack.edu,Communication:5|React:5|Prototyping:5,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-20T03:12:00Z
+S305,Theresa,theresa.s305@skilltrack.edu,SQL:5|Wireframing:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-19T11:29:00Z
+S306,Robert,robert.s306@skilltrack.edu,CSS:3|Prototyping:2|HTML:3,B.Tech ISE (Sem 2),UI/UX Designer,12.5,12.5,0.0,2026-09-19T16:46:00Z
+S307,Lee,lee.s307@skilltrack.edu,User Research:2|Wireframing:2|SQL:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-19T21:03:00Z
+S308,Lawrence,lawrence.s308@skilltrack.edu,HTML:2|JavaScript:5|Problem Solving:2|Machine Learning:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-20T02:20:00Z
+S309,Alfred,alfred.s309@skilltrack.edu,Data Visualization:3|Java:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-20T07:37:00Z
+S310,Michael,michael.s310@skilltrack.edu,Power BI:5|Wireframing:5,B.Tech ISE (Sem 2),Data Analyst,25.0,25.0,0.0,2026-09-20T12:54:00Z
+S311,Brittany,brittany.s311@skilltrack.edu,Machine Learning:3|SQL:5|Communication:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-20T17:11:00Z
+S312,Michael,michael.s312@skilltrack.edu,React:3|Java:5|JavaScript:5|Python:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-20T01:28:00Z
+S313,Brandy,brandy.s313@skilltrack.edu,User Research:3|SQL:2|Problem Solving:2|Python:5,B.Tech ISE (Sem 2),Software Developer,33.3,33.3,0.0,2026-09-20T06:45:00Z
+S314,Patricia,patricia.s314@skilltrack.edu,Data Visualization:2|React:2|Prototyping:3|CSS:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-20T11:02:00Z
+S315,Emily,emily.s315@skilltrack.edu,Communication:2|Python:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-20T16:19:00Z
+S316,Amanda,amanda.s316@skilltrack.edu,Communication:3|Prototyping:5|Problem Solving:3,B.Tech ISE (Sem 2),UI/UX Designer,25.0,15.0,10.0,2026-09-20T21:36:00Z
+S317,Paul,paul.s317@skilltrack.edu,Figma:3|Git:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-21T02:53:00Z
+S318,Daniel,daniel.s318@skilltrack.edu,HTML:5|Prototyping:2|Java:3|Power BI:5,B.Tech ISE (Sem 2),Web Developer,25.0,10.0,20.0,2026-09-21T07:10:00Z
+S319,Kelly,kelly.s319@skilltrack.edu,Git:5|Excel:5|Data Analysis:3|Data Visualization:5,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-20T15:27:00Z
+S320,Anthony,anthony.s320@skilltrack.edu,Java:3|DSA:2|Power BI:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-20T20:44:00Z
+S321,Patrick,patrick.s321@skilltrack.edu,Java:3|User Research:5|Python:3,B.Tech ISE (Sem 2),Software Developer,30.0,19.0,11.0,2026-09-21T01:01:00Z
+S322,Daniel,daniel.s322@skilltrack.edu,SQL:3|Git:2|CSS:5|Java:2,B.Tech ISE (Sem 2),Web Developer,25.0,25.0,0.0,2026-09-21T06:18:00Z
+S323,Eric,eric.s323@skilltrack.edu,Machine Learning:5|Data Visualization:3|Power BI:5,B.Tech ISE (Sem 2),Data Analyst,25.0,12.0,13.0,2026-09-21T11:35:00Z
+S324,Christina,christina.s324@skilltrack.edu,DSA:2|Figma:2|Problem Solving:3|User Research:3,B.Tech ISE (Sem 2),UI/UX Designer,37.5,27.5,10.0,2026-09-21T16:52:00Z
+S325,Brad,brad.s325@skilltrack.edu,Git:2|SQL:2|Figma:5,B.Tech ISE (Sem 2),Software Developer,26.7,26.7,0.0,2026-09-21T21:09:00Z
+S326,Kathleen,kathleen.s326@skilltrack.edu,Git:2|DSA:2|Java:5|Excel:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-21T05:26:00Z
+S327,James,james.s327@skilltrack.edu,Problem Solving:3|Java:2|Wireframing:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-21T10:43:00Z
+S328,Joseph,joseph.s328@skilltrack.edu,HTML:5|Communication:2|Figma:3|Java:5,B.Tech ISE (Sem 2),Software Developer,20.0,10.0,20.0,2026-09-21T15:00:00Z
+S329,Erin,erin.s329@skilltrack.edu,Machine Learning:5|Communication:5|Figma:3,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-21T20:17:00Z
+S330,Isaiah,isaiah.s330@skilltrack.edu,Excel:2|Python:2|Git:2,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-22T01:34:00Z
+S331,Natalie,natalie.s331@skilltrack.edu,Wireframing:2|Git:2|Data Visualization:3|DSA:2,B.Tech ISE (Sem 2),UI/UX Designer,12.5,12.5,0.0,2026-09-22T06:51:00Z
+S332,Denise,denise.s332@skilltrack.edu,Data Analysis:3|Excel:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-22T11:08:00Z
+S333,Catherine,catherine.s333@skilltrack.edu,Git:3|Power BI:3|JavaScript:5|HTML:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-21T19:25:00Z
+S334,Caitlin,caitlin.s334@skilltrack.edu,Power BI:5|React:3|DSA:2|HTML:2,B.Tech ISE (Sem 2),Software Developer,10.0,10.0,0.0,2026-09-22T00:42:00Z
+S335,Nancy,nancy.s335@skilltrack.edu,Figma:5|JavaScript:5|HTML:3,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-22T05:59:00Z
+S336,Mark,mark.s336@skilltrack.edu,CSS:5|DSA:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-22T10:16:00Z
+S337,Kristi,kristi.s337@skilltrack.edu,Problem Solving:3|Wireframing:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-22T15:33:00Z
+S338,Christopher,christopher.s338@skilltrack.edu,Git:5|Data Visualization:2,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-22T20:50:00Z
+S339,Geoffrey,geoffrey.s339@skilltrack.edu,Machine Learning:2|Power BI:5|React:2,B.Tech ISE (Sem 2),Data Analyst,25.0,10.0,22.0,2026-09-23T01:07:00Z
+S340,Kristin,kristin.s340@skilltrack.edu,Data Analysis:5|React:3|DSA:3|Communication:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-22T09:24:00Z
+S341,Rebecca,rebecca.s341@skilltrack.edu,CSS:3|Power BI:5|Machine Learning:5|Python:5,B.Tech ISE (Sem 2),Software Developer,20.0,10.0,14.0,2026-09-22T14:41:00Z
+S342,Lauren,lauren.s342@skilltrack.edu,Python:3|Wireframing:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-22T19:58:00Z
+S343,Jennifer,jennifer.s343@skilltrack.edu,Power BI:3|Communication:2|User Research:5|React:5,B.Tech ISE (Sem 2),Software Developer,0.0,10.0,0.0,2026-09-23T00:15:00Z
+S344,Richard,richard.s344@skilltrack.edu,CSS:2|Figma:3|Power BI:2,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-23T05:32:00Z
+S345,Abigail,abigail.s345@skilltrack.edu,JavaScript:2|Communication:3|Data Analysis:3|Excel:3,B.Tech ISE (Sem 2),Data Analyst,18.8,10.0,18.8,2026-09-23T10:49:00Z
+S346,Christina,christina.s346@skilltrack.edu,User Research:5|DSA:5|Prototyping:2|CSS:5,B.Tech ISE (Sem 2),Web Developer,25.0,10.0,19.0,2026-09-23T15:06:00Z
+S347,Walter,walter.s347@skilltrack.edu,Communication:5|SQL:5|Java:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-22T23:23:00Z
+S348,Nicole,nicole.s348@skilltrack.edu,Python:2|Communication:5|Data Visualization:3|Problem Solving:5,B.Tech ISE (Sem 2),Software Developer,10.0,10.0,8.0,2026-09-23T04:40:00Z
+S349,Cynthia,cynthia.s349@skilltrack.edu,Data Visualization:3|Git:2|Data Analysis:5,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-23T09:57:00Z
+S350,Elizabeth,elizabeth.s350@skilltrack.edu,React:5|Python:5|Power BI:5,B.Tech ISE (Sem 2),Software Developer,20.0,10.0,20.0,2026-09-23T14:14:00Z
+S351,Andrew,andrew.s351@skilltrack.edu,User Research:5|JavaScript:2|Git:5,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-23T19:31:00Z
+S352,Susan,susan.s352@skilltrack.edu,SQL:2|User Research:2|HTML:2|Wireframing:2,B.Tech ISE (Sem 2),UI/UX Designer,29.2,29.2,0.0,2026-09-24T00:48:00Z
+S353,Michael,michael.s353@skilltrack.edu,Machine Learning:5|Power BI:5|JavaScript:3|Data Analysis:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-24T05:05:00Z
+S354,Dana,dana.s354@skilltrack.edu,Power BI:2|Java:2|Machine Learning:5|Wireframing:2,B.Tech ISE (Sem 2),Software Developer,10.0,10.0,10.0,2026-09-23T13:22:00Z
+S355,Ronald,ronald.s355@skilltrack.edu,Communication:2|Problem Solving:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-23T18:39:00Z
+S356,Holly,holly.s356@skilltrack.edu,DSA:5|SQL:5|Wireframing:3,B.Tech ISE (Sem 2),Web Developer,0.0,0.0,0.0,2026-09-23T23:56:00Z
+S357,Jessica,jessica.s357@skilltrack.edu,HTML:5|Java:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-24T04:13:00Z
+S358,Mary,mary.s358@skilltrack.edu,SQL:2|Data Visualization:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-24T09:30:00Z
+S359,Julie,julie.s359@skilltrack.edu,Problem Solving:3|DSA:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-24T14:47:00Z
+S360,Gail,gail.s360@skilltrack.edu,React:5|Data Analysis:5|Git:2,B.Tech ISE (Sem 2),Web Developer,25.0,25.0,0.0,2026-09-24T19:04:00Z
+S361,Travis,travis.s361@skilltrack.edu,Communication:2|Python:5|User Research:2|Prototyping:2,B.Tech ISE (Sem 2),Software Developer,20.0,10.0,10.0,2026-09-24T03:21:00Z
+S362,Lisa,lisa.s362@skilltrack.edu,Excel:2|HTML:2,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-24T08:38:00Z
+S363,Wanda,wanda.s363@skilltrack.edu,Excel:5|SQL:5,B.Tech ISE (Sem 2),Data Analyst,50.0,34.0,16.0,2026-09-24T13:55:00Z
+S364,Jay,jay.s364@skilltrack.edu,React:2|Prototyping:2|HTML:2|Power BI:2,B.Tech ISE (Sem 2),UI/UX Designer,12.5,12.5,0.0,2026-09-24T18:12:00Z
+S365,Amber,amber.s365@skilltrack.edu,HTML:2|Data Analysis:3|JavaScript:5|Wireframing:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-24T23:29:00Z
+S366,Beth,beth.s366@skilltrack.edu,JavaScript:5|User Research:2|React:2,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-25T04:46:00Z
+S367,Casey,casey.s367@skilltrack.edu,DSA:5|Power BI:5|Data Analysis:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-25T09:03:00Z
+S368,Brandy,brandy.s368@skilltrack.edu,Python:2|Git:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-24T17:20:00Z
+S369,Jill,jill.s369@skilltrack.edu,HTML:3|DSA:5|Data Analysis:3,B.Tech ISE (Sem 2),UI/UX Designer,0.0,10.0,0.0,2026-09-24T22:37:00Z
+S370,Ricky,ricky.s370@skilltrack.edu,HTML:5|Python:5|Prototyping:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-25T03:54:00Z
+S371,Kenneth,kenneth.s371@skilltrack.edu,CSS:5|Data Analysis:2,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-25T08:11:00Z
+S372,Eric,eric.s372@skilltrack.edu,React:2|HTML:2|SQL:5|Figma:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-25T13:28:00Z
+S373,Michael,michael.s373@skilltrack.edu,Python:3|React:2,B.Tech ISE (Sem 2),Data Analyst,18.8,18.8,0.0,2026-09-25T18:45:00Z
+S374,Nicole,nicole.s374@skilltrack.edu,React:3|Machine Learning:3,B.Tech ISE (Sem 2),Data Analyst,0.0,0.0,0.0,2026-09-25T23:02:00Z
+S375,Jacob,jacob.s375@skilltrack.edu,SQL:2|Excel:3|Data Visualization:3|HTML:5,B.Tech ISE (Sem 2),UI/UX Designer,0.0,0.0,0.0,2026-09-25T07:19:00Z
+S376,Scott,scott.s376@skilltrack.edu,Excel:3|Java:3,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-25T12:36:00Z
+S377,Maureen,maureen.s377@skilltrack.edu,CSS:3|Communication:2|Power BI:3|Python:3,B.Tech ISE (Sem 2),Web Developer,18.8,18.8,0.0,2026-09-25T17:53:00Z
+S378,Frank,frank.s378@skilltrack.edu,User Research:5|SQL:2,B.Tech ISE (Sem 2),Data Analyst,12.5,10.0,11.0,2026-09-25T22:10:00Z
+S379,Shannon,shannon.s379@skilltrack.edu,Prototyping:5|Communication:2|Java:2|Machine Learning:2,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-26T03:27:00Z
+S380,John,john.s380@skilltrack.edu,JavaScript:5|Wireframing:3|Power BI:2|Data Analysis:2,B.Tech ISE (Sem 2),Web Developer,25.0,14.0,11.0,2026-09-26T08:44:00Z
+S381,Victoria,victoria.s381@skilltrack.edu,Wireframing:3|Data Visualization:2|Excel:5,B.Tech ISE (Sem 2),Web Developer,0.0,10.0,0.0,2026-09-26T13:01:00Z
+S382,Sally,sally.s382@skilltrack.edu,CSS:3|SQL:5|Java:2,B.Tech ISE (Sem 2),Software Developer,30.0,30.0,0.0,2026-09-25T21:18:00Z
+S383,Christopher,christopher.s383@skilltrack.edu,Power BI:3|Problem Solving:5|Wireframing:5,B.Tech ISE (Sem 2),UI/UX Designer,25.0,25.0,0.0,2026-09-26T02:35:00Z
+S384,Michael,michael.s384@skilltrack.edu,Wireframing:5|Git:3|DSA:3,B.Tech ISE (Sem 2),Data Analyst,0.0,10.0,0.0,2026-09-26T07:52:00Z
+S385,Jason,jason.s385@skilltrack.edu,User Research:2|Data Visualization:5,B.Tech ISE (Sem 2),UI/UX Designer,16.7,10.0,16.0,2026-09-26T12:09:00Z
+S386,Stephanie,stephanie.s386@skilltrack.edu,JavaScript:3|SQL:2,B.Tech ISE (Sem 2),Web Developer,18.8,10.0,10.0,2026-09-26T17:26:00Z
+S387,Jennifer,jennifer.s387@skilltrack.edu,SQL:2|React:3|User Research:3,B.Tech ISE (Sem 2),Data Analyst,12.5,12.5,0.0,2026-09-26T22:43:00Z
+S388,Stephanie,stephanie.s388@skilltrack.edu,JavaScript:2|Data Visualization:3|Prototyping:2,B.Tech ISE (Sem 2),UI/UX Designer,12.5,10.0,12.0,2026-09-27T03:00:00Z
+S389,Shane,shane.s389@skilltrack.edu,Communication:5|Prototyping:3,B.Tech ISE (Sem 2),Software Developer,0.0,0.0,0.0,2026-09-26T11:17:00Z
+STU002,Alex Miller,alex.progression@example.com,Python:5|SQL:5,B.Tech Computer Science,Junior Python Developer,40.0,20.0,20.0,2026-09-09T16:16:31Z
+STU003,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,50.0,50.0,0.0,2026-09-09T16:16:32Z
+STU004,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech IT,Full Stack Web Developer,0.0,0.0,0.0,2026-09-09T16:16:32Z

@@ -149,6 +149,10 @@ def load_students(csv_path: Optional[Path | str] = None) -> List[Dict[str, Any]]
                 tier = "Tier 3: Foundational Stage"
                 tier_badge = "badge-danger"
 
+            training_program = (row.get("training_program") or "").strip()
+            placement_status = (row.get("placement_status") or "").strip() or "Seeking Job"
+            salary_lpa = float(row.get("salary_lpa")) if row.get("salary_lpa") else None
+
             student = {
                 "student_id": s_id,
                 "name": name,
@@ -162,6 +166,9 @@ def load_students(csv_path: Optional[Path | str] = None) -> List[Dict[str, Any]]
                 "timestamp": timestamp,
                 "readiness_tier": tier,
                 "tier_badge": tier_badge,
+                "training_program": training_program,
+                "placement_status": placement_status,
+                "salary_lpa": salary_lpa,
             }
             students.append(student)
     return students
@@ -378,22 +385,37 @@ def get_admin_cohort_stats(csv_path: Optional[Path | str] = None) -> Dict[str, A
     tier_3 = sum(1 for s in students if (s.get("score") or 0) < 50.0)
 
     roles_count: Dict[str, int] = {}
+    placed_count = 0
+    salaries = []
     for s in students:
         r = s.get("target_role") or "Junior Data Analyst"
         roles_count[r] = roles_count.get(r, 0) + 1
+        if (s.get("placement_status") or "").lower() == "placed":
+            placed_count += 1
+        if s.get("salary_lpa"):
+            try:
+                salaries.append(float(s["salary_lpa"]))
+            except (ValueError, TypeError):
+                pass
 
-    skill_deficit_counts: Dict[str, int] = {"Docker": 0, "Git": 0, "Power BI": 0, "SQL": 0, "Python": 0}
+    placement_rate = round((placed_count / total_students) * 100, 1) if total_students else 0.0
+    avg_salary = round(sum(salaries) / len(salaries), 1) if salaries else 0.0
+
+    skill_deficit_counts: Dict[str, int] = {}
     for s in students:
-        s_map = {sk["name"].lower(): sk["level"] for sk in s.get("student_skills", [])}
-        for def_skill in skill_deficit_counts:
-            if s_map.get(def_skill.lower(), 0) < 3:
-                skill_deficit_counts[def_skill] += 1
+        for sk in s.get("student_skills", []):
+            if sk.get("level", 0) < 3:
+                name = sk.get("name", "")
+                skill_deficit_counts[name] = skill_deficit_counts.get(name, 0) + 1
 
     return {
         "total_students": total_students,
         "total_assessments": total_students + sum(1 for s in students if (s.get("improvement_delta") or 0) > 0),
         "average_score": avg_score,
         "average_improvement": avg_improvement,
+        "placed_count": placed_count,
+        "placement_rate_pct": placement_rate,
+        "avg_salary_lpa": avg_salary,
         "tier_distribution": {
             "tier_1_count": tier_1,
             "tier_1_pct": round((tier_1 / total_students) * 100, 1) if total_students else 0,

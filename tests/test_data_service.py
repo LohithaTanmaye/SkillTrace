@@ -76,7 +76,7 @@ def test_get_job_by_id():
 
 def test_load_students():
     students = load_students()
-    assert len(students) >= 4
+    assert len(students) >= 300
     rahul = next(s for s in students if s["student_id"] == "STU001")
     assert rahul["name"] == "Rahul Sharma"
     skills = {s["name"]: s["level"] for s in rahul["student_skills"]}

@@ -150,6 +150,28 @@
             <span class="trend-badge trend-up">⬆️ Retake Improvement</span>
           </div>
         </div>
+
+        <div class="admin-kpi-card">
+          <div class="admin-kpi-header">
+            <span>Campus Placement Rate</span>
+            <span>💼</span>
+          </div>
+          <div class="admin-kpi-value" id="kpi-placement-rate">0.0%</div>
+          <div>
+            <span class="trend-badge trend-up">✓ Placed Students</span>
+          </div>
+        </div>
+
+        <div class="admin-kpi-card">
+          <div class="admin-kpi-header">
+            <span>Avg Package (LPA)</span>
+            <span>💰</span>
+          </div>
+          <div class="admin-kpi-value" id="kpi-avg-salary">0.0 LPA</div>
+          <div>
+            <span class="trend-badge trend-neutral">B.Tech Cohort</span>
+          </div>
+        </div>
       </div>
 
       <!-- Visual Cohort Breakdown: Tiers & Deficits -->
@@ -213,9 +235,10 @@
               <tr>
                 <th>ID</th>
                 <th>Candidate Details</th>
-                <th>Degree / College</th>
+                <th>Degree / Program</th>
                 <th>Target Role</th>
                 <th>Alignment Score</th>
+                <th>Placement Status</th>
                 <th>Skill Growth</th>
                 <th>Timestamp</th>
                 <th>Action</th>
@@ -223,7 +246,7 @@
             </thead>
             <tbody id="students-table-body">
               <tr>
-                <td colspan="8" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                <td colspan="9" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
                   Loading progression records...
                 </td>
               </tr>
