@@ -1,7 +1,6 @@
 """
 data_service.py: Data transformation layer for CSV inputs in SKILLTRACE.
-Responsible for reading and transforming CSV records into structured Python dicts
-compatible with the skilltrace_ai engine.
+Responsible for reading, writing, and transforming records into structured Python dicts.
 """
 
 from __future__ import annotations
@@ -41,6 +40,20 @@ def parse_skills_string(skills_str: str, key_name: str = "level") -> List[Dict[s
             parsed_skills.append({"name": name, key_name: level})
 
     return parsed_skills
+
+
+def serialize_skills_list(skills: List[Dict[str, Any]], key_name: str = "level") -> str:
+    """
+    Converts list of skill dicts [{'name': 'Python', 'level': 4}, ...]
+    into CSV string format 'Python:4|SQL:3'.
+    """
+    items = []
+    for s in skills:
+        name = s.get("name", "").strip()
+        lvl = s.get(key_name) or s.get("level") or 1
+        if name:
+            items.append(f"{name}:{lvl}")
+    return "|".join(items)
 
 
 def load_jobs(csv_path: Optional[Path | str] = None) -> List[Dict[str, Any]]:
@@ -104,6 +117,69 @@ def get_student_by_id(student_id: str, csv_path: Optional[Path | str] = None) ->
         if student["student_id"].lower() == student_id.lower().strip():
             return student
     return None
+
+
+def add_student(
+    name: str,
+    email: str,
+    student_skills: List[Dict[str, Any]],
+    csv_path: Optional[Path | str] = None,
+) -> Dict[str, Any]:
+    """
+    Registers a new student profile, assigns a unique ID,
+    persists the record to CSV, and mirrors to database if active.
+    """
+    path = Path(csv_path) if csv_path else DEFAULT_DATA_DIR / "students.csv"
+    existing_students = load_students(path)
+
+    # Generate sequential ID (e.g. STU005)
+    max_num = 0
+    for s in existing_students:
+        s_id = s.get("student_id", "")
+        if s_id.startswith("STU"):
+            try:
+                num = int(s_id.replace("STU", ""))
+                if num > max_num:
+                    max_num = num
+            except ValueError:
+                pass
+
+    new_id = f"STU{max_num + 1:03d}"
+    skills_serialized = serialize_skills_list(student_skills, key_name="level")
+
+    # 1. Append to CSV
+    with open(path, mode="a", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([new_id, name.strip(), email.strip(), skills_serialized])
+
+    # 2. Mirror into database if connection available
+    try:
+        from backend.database.connection import SessionLocal
+        from backend.models.db_models import Student, StudentSkill
+        session = SessionLocal()
+        try:
+            db_student = Student(student_id=new_id, name=name.strip(), email=email.strip())
+            session.add(db_student)
+            for sk in student_skills:
+                session.add(StudentSkill(
+                    student_id=new_id,
+                    skill_name=sk.get("name", "").strip(),
+                    level=int(sk.get("level", 1)),
+                ))
+            session.commit()
+        except Exception:
+            session.rollback()
+        finally:
+            session.close()
+    except Exception:
+        pass
+
+    return {
+        "student_id": new_id,
+        "name": name.strip(),
+        "email": email.strip(),
+        "student_skills": student_skills,
+    }
 
 
 def load_assessment_questions(

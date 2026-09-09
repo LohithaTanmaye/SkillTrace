@@ -1,5 +1,6 @@
 """
-skill_schemas.py: Pydantic models for skill profile analysis and job matching.
+skill_schemas.py: Pydantic models for skill profile analysis, student registration,
+and multi-role career recommendations.
 """
 
 from typing import Any, Dict, List, Optional
@@ -16,6 +17,13 @@ class RequiredSkillItem(BaseModel):
     required_level: int = Field(..., ge=1, le=5, description="Required proficiency level (1-5)")
 
 
+class CreateStudentRequest(BaseModel):
+    name: str = Field(..., description="Full name of the student")
+    email: str = Field(..., description="Email address")
+    degree: Optional[str] = Field("B.Tech Computer Science", description="Degree or academic specialization")
+    student_skills: List[SkillItem] = Field(..., description="List of skills with proficiency levels (1-5)")
+
+
 class AnalyzeStudentRequest(BaseModel):
     job_title: Optional[str] = Field("Target Role", description="Target job title")
     student_skills: List[SkillItem] = Field(..., description="List of student skills")
@@ -27,15 +35,12 @@ class MatchJobRequest(BaseModel):
     job_id: str = Field(..., description="Identifier of the benchmark job, e.g. 'JOB001'")
 
 
-class EvaluatedSkillDetail(BaseModel):
-    name: str
-    required_level: int
-    student_level: int
-    deficit: int
-    match_ratio: float
-    match_type: str
-    confidence: float
-    category: str
+class MilestoneItem(BaseModel):
+    from_level: int
+    to_level: int
+    title: str
+    focus_topics: str
+    suggested_project: str
 
 
 class RecommendationItem(BaseModel):
@@ -47,6 +52,7 @@ class RecommendationItem(BaseModel):
     title: str
     action: str
     estimated_effort_weeks: int
+    level_roadmap: Optional[List[MilestoneItem]] = []
 
 
 class PrioritizedGapItem(BaseModel):
@@ -73,3 +79,22 @@ class AnalysisResponse(BaseModel):
     explanation_details: Dict[str, Any]
     score_breakdown: List[Dict[str, Any]]
     disclaimer: str
+
+
+class RoleRecommendationItem(BaseModel):
+    job_id: str
+    title: str
+    domain: str
+    experience_level: str
+    match_score: float
+    fit_tier: str  # "Ready to Apply", "Close Match", "Future Target"
+    matched_skills_count: int
+    gaps_count: int
+    matched_skill_names: List[str]
+    top_missing_skills: List[str]
+
+
+class MultiRoleAnalysisResponse(BaseModel):
+    ranked_roles: List[RoleRecommendationItem]
+    best_fit_role: Optional[RoleRecommendationItem] = None
+    total_roles_evaluated: int
