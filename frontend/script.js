@@ -62,13 +62,33 @@ function getStudentSkills() {
 }
 
 // -------------------------------------------------------------
-// ASSESSMENT PAGE LOGIC
+// ASSESSMENT PAGE LOGIC (with Candidate Details Gate)
 // -------------------------------------------------------------
 async function initAssessmentPage() {
   const container = document.getElementById("questions-container");
   const jobSelect = document.getElementById("target-job-select");
-  const form = document.getElementById("assessment-form");
-  if (!container || !form) return;
+  const candidateForm = document.getElementById("candidate-info-form");
+  const assessmentForm = document.getElementById("assessment-form");
+
+  const step1Card = document.getElementById("step-1-card");
+  const step2Card = document.getElementById("step-2-card");
+  const summaryBar = document.getElementById("candidate-summary-bar");
+  const summaryName = document.getElementById("summary-candidate-name");
+  const summaryEmail = document.getElementById("summary-candidate-email");
+  const summaryRole = document.getElementById("summary-target-role");
+  const editCandidateBtn = document.getElementById("edit-candidate-btn");
+  const backToStep1Btn = document.getElementById("back-to-step-1-btn");
+
+  if (!container || !assessmentForm) return;
+
+  // Stored active candidate details
+  let activeCandidate = {
+    name: "",
+    email: "",
+    degree: "",
+    target_job_id: "JOB001",
+    target_job_title: "Junior Data Analyst",
+  };
 
   try {
     const [questions, jobs] = await Promise.all([
@@ -82,6 +102,53 @@ async function initAssessmentPage() {
       ).join("");
     }
 
+    // Step 1: Candidate Form Submission
+    if (candidateForm) {
+      candidateForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("candidate-name").value.trim();
+        const email = document.getElementById("candidate-email").value.trim();
+        const degree = document.getElementById("candidate-degree").value.trim();
+        const selectedJob = jobSelect.options[jobSelect.selectedIndex];
+
+        if (!name || !email) {
+          alert("Please enter your name and email to proceed.");
+          return;
+        }
+
+        activeCandidate = {
+          name,
+          email,
+          degree,
+          target_job_id: jobSelect.value,
+          target_job_title: selectedJob ? selectedJob.text.split(" (")[0] : "Target Role",
+        };
+
+        // Populate summary bar
+        if (summaryName) summaryName.innerText = activeCandidate.name;
+        if (summaryEmail) summaryEmail.innerText = `(${activeCandidate.email})`;
+        if (summaryRole) summaryRole.innerText = activeCandidate.target_job_title;
+
+        // Transition to Step 2
+        step1Card.style.display = "none";
+        summaryBar.style.display = "block";
+        step2Card.style.display = "block";
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // Edit Candidate Details (back to Step 1)
+    function showStep1() {
+      step1Card.style.display = "block";
+      summaryBar.style.display = "none";
+      step2Card.style.display = "none";
+    }
+
+    if (editCandidateBtn) editCandidateBtn.addEventListener("click", showStep1);
+    if (backToStep1Btn) backToStep1Btn.addEventListener("click", showStep1);
+
+    // Render questions
     container.innerHTML = questions.map((q, idx) => `
       <div class="question-item" data-qid="${q.question_id}">
         <div class="question-title">
@@ -99,15 +166,16 @@ async function initAssessmentPage() {
       </div>
     `).join("");
 
-    form.addEventListener("submit", async (e) => {
+    // Step 2: Assessment Form Submission
+    assessmentForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector("button[type='submit']");
+      const submitBtn = assessmentForm.querySelector("button[type='submit']");
       submitBtn.disabled = true;
-      submitBtn.innerText = "Evaluating Assessment...";
+      submitBtn.innerText = "Evaluating & Registering...";
 
       const answers = [];
       questions.forEach(q => {
-        const selected = form.querySelector(`input[name="q_${q.question_id}"]:checked`);
+        const selected = assessmentForm.querySelector(`input[name="q_${q.question_id}"]:checked`);
         if (selected) {
           answers.push({
             question_id: q.question_id,
@@ -118,8 +186,11 @@ async function initAssessmentPage() {
 
       try {
         const payload = {
+          student_name: activeCandidate.name,
+          email: activeCandidate.email,
+          degree: activeCandidate.degree,
           answers,
-          target_job_id: jobSelect ? jobSelect.value : "JOB001",
+          target_job_id: activeCandidate.target_job_id || "JOB001",
         };
 
         const result = await apiCall("/assessment/submit", "POST", payload);
@@ -139,7 +210,7 @@ async function initAssessmentPage() {
       } catch (err) {
         alert(`Assessment Submission Error: ${err.message}`);
         submitBtn.disabled = false;
-        submitBtn.innerText = "Submit & View Job Readiness";
+        submitBtn.innerText = "Submit & View Career Readiness ➔";
       }
     });
   } catch (err) {

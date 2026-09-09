@@ -22,26 +22,84 @@
   </header>
 
   <main class="container">
-    <div class="card">
+    <!-- STEP 1: Student Information & Target Role Gate -->
+    <div id="step-1-card" class="card" style="border-top: 5px solid var(--primary);">
       <div class="card-header">
-        <h2>📝 Skill Proficiency Pre-Assessment</h2>
+        <h2>👤 Step 1: Enter Your Candidate Details</h2>
       </div>
-      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-        Answer the calibrated questions below to evaluate your skill levels (Level 1–5).
-        Select your target job role to immediately see your job-readiness match score and gap analysis.
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
+        Please enter your details and select your target benchmark career role to personalize your pre-assessment and career readiness analysis.
+      </p>
+
+      <form id="candidate-info-form">
+        <div class="grid-2" style="margin-bottom: 1rem;">
+          <div>
+            <label for="candidate-name" style="font-weight: 600; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">
+              Full Name: <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="text" id="candidate-name" required placeholder="e.g. Lohitha Tanmaye" style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+          <div>
+            <label for="candidate-email" style="font-weight: 600; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">
+              Email Address: <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="email" id="candidate-email" required placeholder="e.g. lohita@example.com" style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 1.5rem;">
+          <div>
+            <label for="candidate-degree" style="font-weight: 600; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">
+              College / Degree:
+            </label>
+            <input type="text" id="candidate-degree" placeholder="e.g. B.Tech Computer Science" style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+          <div>
+            <label for="target-job-select" style="font-weight: 600; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">
+              Target Career Role: <span style="color: var(--danger);">*</span>
+            </label>
+            <select id="target-job-select" required style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem; font-weight: 600;">
+              <option value="">Loading job roles...</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="text-align: right;">
+          <button type="submit" class="btn btn-primary btn-lg">
+            Proceed to Assessment Questions ➔
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Candidate Summary Badge (shown when Step 2 is active) -->
+    <div id="candidate-summary-bar" class="card" style="display: none; background: #eff6ff; border: 1px solid #bfdbfe; padding: 1rem 1.5rem; margin-bottom: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+        <div>
+          <span style="font-size: 0.85rem; color: #1e40af; font-weight: 600; text-transform: uppercase;">Active Candidate:</span>
+          <strong id="summary-candidate-name" style="font-size: 1.05rem; margin-left: 0.25rem; color: var(--secondary);"></strong>
+          <span id="summary-candidate-email" style="font-size: 0.9rem; color: var(--text-muted); margin-left: 0.5rem;"></span>
+          <span style="margin: 0 0.5rem; color: var(--border);">|</span>
+          <span style="font-size: 0.85rem; color: #1e40af; font-weight: 600; text-transform: uppercase;">Target Role:</span>
+          <span id="summary-target-role" class="badge badge-primary" style="margin-left: 0.25rem; font-size: 0.85rem; background: #2563eb; color: #fff;"></span>
+        </div>
+        <button type="button" id="edit-candidate-btn" class="btn btn-secondary btn-sm" style="background: #fff;">
+          ✎ Edit Details
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Pre-Assessment Questions (Hidden initially) -->
+    <div id="step-2-card" class="card" style="display: none;">
+      <div class="card-header">
+        <h2>📝 Step 2: Skill Proficiency Questions</h2>
+        <span class="badge badge-neutral">Calibrated Questions Bank</span>
+      </div>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
+        Answer the multiple-choice questions below. Each correct answer contributes to your estimated proficiency level (Level 1–5).
       </p>
 
       <form id="assessment-form">
-        <!-- Target Job Selection -->
-        <div style="margin-bottom: 1.5rem; background: #f8fafc; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
-          <label for="target-job-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">
-            Select Target Benchmark Job Role:
-          </label>
-          <select id="target-job-select" style="width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600;">
-            <option value="">Loading job roles...</option>
-          </select>
-        </div>
-
         <!-- Dynamic Questions Container -->
         <div id="questions-container">
           <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
@@ -50,14 +108,15 @@
         </div>
 
         <!-- Submit Button -->
-        <div style="text-align: right; margin-top: 1.5rem;">
-          <button type="submit" class="btn btn-primary btn-lg">Submit & View Job Readiness ➔</button>
+        <div style="text-align: right; margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+          <button type="button" id="back-to-step-1-btn" class="btn btn-secondary">← Back to Details</button>
+          <button type="submit" class="btn btn-primary btn-lg">Submit & View Career Readiness ➔</button>
         </div>
       </form>
     </div>
 
     <div class="disclaimer-box">
-      ⚖️ <strong>Disclaimer:</strong> Proficiency levels generated from this pre-assessment are estimates based on your answers. They do not constitute a formal certification.
+      ⚖️ <strong>Disclaimer:</strong> Proficiency levels generated from this pre-assessment are estimates based on your answers. They do not constitute a formal certification or employment guarantee.
     </div>
   </main>
 

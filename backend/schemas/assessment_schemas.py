@@ -21,6 +21,9 @@ class AssessmentAnswerSubmission(BaseModel):
 
 class AssessmentSubmitRequest(BaseModel):
     student_id: Optional[str] = Field(None, description="Optional student ID to associate results with")
+    student_name: Optional[str] = Field(None, description="Optional student full name for new user registration")
+    email: Optional[str] = Field(None, description="Optional student email address")
+    degree: Optional[str] = Field(None, description="Optional academic major or degree")
     answers: List[AssessmentAnswerSubmission] = Field(..., description="List of user's submitted answers")
     target_job_id: Optional[str] = Field(None, description="Optional target job ID to immediately run matching")
 

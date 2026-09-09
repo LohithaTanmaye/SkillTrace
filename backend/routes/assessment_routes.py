@@ -14,6 +14,7 @@ from backend.schemas.assessment_schemas import (
 from backend.services.data_service import (
     load_assessment_questions,
     get_job_by_id,
+    add_student,
 )
 from skilltrace_ai import (
     analyze_assessment,
@@ -101,9 +102,22 @@ def submit_assessment_answers(payload: AssessmentSubmitRequest):
     eval_result = analyze_assessment(assessment_data)
     student_skills = assessment_to_student_skills(eval_result["evaluated_skills"])
 
+    # Optional automatic student registration if candidate details were provided
+    registered_student = None
+    if payload.student_name and payload.email:
+        try:
+            registered_student = add_student(
+                name=payload.student_name,
+                email=payload.email,
+                student_skills=student_skills,
+            )
+        except Exception:
+            pass
+
     response_payload: Dict[str, Any] = {
         "evaluated_skills": eval_result["evaluated_skills"],
         "student_skills_profile": student_skills,
+        "registered_student": registered_student,
         "note": eval_result["note"],
         "job_analysis": None,
     }
