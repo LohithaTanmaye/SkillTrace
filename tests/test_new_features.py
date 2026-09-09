@@ -1,6 +1,6 @@
 """
 test_new_features.py: Verification of New Student Registration, Level-by-Level Roadmaps,
-and Multi-Role Career Recommendations ("Inka em em roles ki apply cheyochu").
+and Multi-Role Career Recommendations (Eligible Roles Alignment).
 """
 
 from fastapi.testclient import TestClient

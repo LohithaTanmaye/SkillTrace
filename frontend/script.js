@@ -466,7 +466,7 @@ function initResultsPage() {
     ${multiRoles && multiRoles.ranked_roles ? `
       <div class="card">
         <div class="card-header">
-          <h3>💼 Career Roles You Can Target ("Inka Em Em Roles ki Apply Cheyochu")</h3>
+          <h3>💼 Career Roles You Can Target (Multi-Role Compatibility)</h3>
           <span class="badge badge-neutral">${multiRoles.total_roles_evaluated} Benchmark Roles Analyzed</span>
         </div>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
