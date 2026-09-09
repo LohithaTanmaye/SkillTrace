@@ -24,5 +24,10 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: list[str] = ["*"]
 
+    # Admin Portal Credentials
+    ADMIN_USERNAME: str = os.getenv("ADMIN_USERNAME", "admin")
+    ADMIN_PASSWORD: str = os.getenv("ADMIN_PASSWORD", "admin123")
+    ADMIN_TOKEN: str = os.getenv("ADMIN_TOKEN", "skilltrace-admin-secret-token-2026")
+
 
 settings = Settings()

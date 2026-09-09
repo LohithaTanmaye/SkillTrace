@@ -27,7 +27,15 @@ class Student(Base):
     student_id: Mapped[str] = mapped_column(String(50), unique=True, index=True, nullable=False)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(120), nullable=False)
+    degree: Mapped[Optional[str]] = mapped_column(String(120), nullable=True)
+    target_role: Mapped[Optional[str]] = mapped_column(String(150), nullable=True)
+    latest_score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+    initial_score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+    improvement_delta: Mapped[Optional[float]] = mapped_column(Float, default=0.0)
     created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.now(timezone.utc)
+    )
+    enrolled_at: Mapped[datetime] = mapped_column(
         DateTime, default=lambda: datetime.now(timezone.utc)
     )
 

@@ -11,6 +11,7 @@ from backend.routes.analysis_routes import router as analysis_router
 from backend.routes.assessment_routes import router as assessment_router
 from backend.routes.job_routes import router as job_router
 from backend.routes.student_routes import router as student_router
+from backend.routes.admin_routes import router as admin_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -34,6 +35,7 @@ app.include_router(analysis_router)
 app.include_router(assessment_router)
 app.include_router(job_router)
 app.include_router(student_router)
+app.include_router(admin_router)
 
 
 @app.get("/api/meta", tags=["System"])

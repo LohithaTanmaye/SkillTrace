@@ -1,21 +1,25 @@
-student_id,name,email,skills
-STU001,Rahul Sharma,rahul.sharma@example.com,"Python:4|SQL:3|Excel:4"
-STU002,Priya Patel,priya.patel@example.com,"Python:3|FastAPI:2|Git:3"
-STU003,Amit Kumar,amit.kumar@example.com,"HTML:5|CSS:4|JavaScript:3"
-STU004,Sneha Reddy,sneha.reddy@example.com,"Python:4|Statistics:3|SQL:2"
-STU005,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU006,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU007,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU008,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU009,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU010,lohitha,lohitanu16@gmail.com,Python:2|SQL:4|Power BI:1|JavaScript:1|Git:1|Docker:1
-STU011,lohitha,lohitanu16@gmail.com,Python:3|SQL:2|Power BI:3|JavaScript:1|Git:1|Docker:1
-STU012,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU013,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU014,Lohitha Test,lohita.custom@example.com,Python:5
-STU015,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU016,Lohitha Test,lohita.custom@example.com,Python:5
-STU017,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU018,Lohitha Test,lohita.custom@example.com,Python:5
-STU019,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3
-STU020,Lohitha Test,lohita.custom@example.com,Python:5
+student_id,name,email,skills,degree,target_role,score,initial_score,improvement_delta,timestamp
+STU001,Rahul Sharma,rahul.sharma@example.com,Python:4|SQL:3|Excel:4,B.Tech Computer Science,Junior Data Analyst,78.5,60.0,18.5,2026-09-08T10:00:00Z
+STU002,Priya Patel,priya.patel@example.com,Python:3|FastAPI:2|Git:3,B.Tech Computer Science,Junior Data Analyst,58.3,50.0,8.3,2026-09-08T10:00:00Z
+STU003,Amit Kumar,amit.kumar@example.com,HTML:5|CSS:4|JavaScript:3,B.Tech Computer Science,Junior Data Analyst,82.0,70.0,12.0,2026-09-08T10:00:00Z
+STU004,Sneha Reddy,sneha.reddy@example.com,Python:4|Statistics:3|SQL:2,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU005,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-09T14:46:34Z
+STU006,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU007,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU008,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU009,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU010,lohitha,lohitanu16@gmail.com,Python:2|SQL:4|Power BI:1|JavaScript:1|Git:1|Docker:1,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU011,lohitha,lohitanu16@gmail.com,Python:3|SQL:2|Power BI:3|JavaScript:1|Git:1|Docker:1,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU012,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU013,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU014,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech IT,Full Stack Web Developer,0.0,65.0,-65.0,2026-09-09T14:46:34Z
+STU015,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU016,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU017,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU018,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU019,Lohitha Tanmaye,lohita.test@example.com,Python:4|FastAPI:3|SQL:3,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU020,Lohitha Test,lohita.custom@example.com,Python:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU021,lohitha,lohitanu16@gmail.com,Python:3|SQL:4|Power BI:1|JavaScript:1|Git:5|Docker:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU022,lohitha,lohitanu16@gmail.com,Python:2|SQL:2|Power BI:1|JavaScript:1|Git:5|Docker:5,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU023,lohitha,lohitanu16@gmail.com,Python:5|SQL:3|Power BI:5|JavaScript:3|Git:5|Docker:1,B.Tech Computer Science,Junior Data Analyst,65.0,65.0,0.0,2026-09-08T10:00:00Z
+STU024,Alex Miller,alex.progression@example.com,Python:5|SQL:5,B.Tech Computer Science,Junior Python Developer,40.0,20.0,20.0,2026-09-09T14:46:34Z

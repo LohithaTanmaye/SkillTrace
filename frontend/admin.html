@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator Portal - SKILLTRACE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      🎯 <span>SKILLTRACE</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Explore Roles</a>
+      <a href="dashboard.html">Skill Matcher</a>
+      <a href="assessment.html">Pre-Assessment</a>
+      <a href="admin.html" class="active">Admin Portal</a>
+      <a href="/docs" target="_blank">API Docs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    
+    <!-- STATE 1: Admin Login Gate -->
+    <div id="admin-login-view">
+      <div class="admin-login-card">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔐</div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem;">
+          Administrator Portal
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+          Sign in to inspect campus student enrollments, timestamps, and real-time competency improvement analytics.
+        </p>
+
+        <form id="admin-login-form">
+          <div style="margin-bottom: 1rem; text-align: left;">
+            <label for="admin-username" style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
+              Username:
+            </label>
+            <input 
+              type="text" 
+              id="admin-username" 
+              required 
+              placeholder="e.g. admin" 
+              style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem;"
+            >
+          </div>
+
+          <div style="margin-bottom: 1.25rem; text-align: left;">
+            <label for="admin-password" style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
+              Password:
+            </label>
+            <input 
+              type="password" 
+              id="admin-password" 
+              required 
+              placeholder="••••••••" 
+              style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem;"
+            >
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 1rem;">
+            Sign In to Admin Dashboard ➔
+          </button>
+        </form>
+
+        <!-- One-Click Demo Credentials Pill -->
+        <div style="background: #f8fafc; border: 1px dashed var(--border); border-radius: var(--radius-md); padding: 0.75rem; font-size: 0.85rem; color: var(--text-muted);">
+          <span>💡 Quick Hackathon Demo:</span>
+          <button id="quick-demo-login-btn" style="margin-left: 0.5rem; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700; cursor: pointer;">
+            Use admin / admin123
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE 2: Admin Dashboard (Shown when authenticated) -->
+    <div id="admin-dashboard-view" style="display: none;">
+      
+      <!-- Top Title & Sign Out Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary); letter-spacing: -0.02em;">
+              Student Progression & Analytics Oversight
+            </h1>
+            <span class="badge badge-success" style="font-size: 0.75rem;">● Live Admin Session</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.2rem;">
+            Tracking student pre-assessments, skill improvement deltas, and enrollment timestamps.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem;">
+          <button type="button" id="refresh-stats-btn" class="btn btn-secondary">
+            🔄 Refresh Data
+          </button>
+          <button type="button" id="admin-logout-btn" class="btn btn-secondary" style="color: var(--danger); border-color: #fca5a5;">
+            🚪 Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Executive KPI Metric Cards -->
+      <div class="admin-kpi-grid">
+        <div class="admin-kpi-card">
+          <div class="admin-kpi-header">
+            <span>Total Enrolled</span>
+            <span>👥</span>
+          </div>
+          <div class="admin-kpi-value" id="kpi-total-students">0</div>
+          <div>
+            <span class="trend-badge trend-up">✓ Active Profiles</span>
+          </div>
+        </div>
+
+        <div class="admin-kpi-card">
+          <div class="admin-kpi-header">
+            <span>Assessments Taken</span>
+            <span>📝</span>
+          </div>
+          <div class="admin-kpi-value" id="kpi-total-assessments">0</div>
+          <div>
+            <span class="trend-badge trend-up">Evaluated Submissions</span>
+          </div>
+        </div>
+
+        <div class="admin-kpi-card">
+          <div class="admin-kpi-header">
+            <span>Avg Alignment Score</span>
+            <span>🎯</span>
+          </div>
+          <div class="admin-kpi-value" id="kpi-avg-score">0.0%</div>
+          <div>
+            <span class="trend-badge trend-neutral">Cohort Mean</span>
+          </div>
+        </div>
+
+        <div class="admin-kpi-card">
+          <div class="admin-kpi-header">
+            <span>Avg Skill Growth</span>
+            <span>📈</span>
+          </div>
+          <div class="admin-kpi-value" id="kpi-avg-improvement">+0.0%</div>
+          <div>
+            <span class="trend-badge trend-up">⬆️ Retake Improvement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Cohort Breakdown: Tiers & Deficits -->
+      <div class="grid-2" style="margin-bottom: 1.75rem;">
+        
+        <!-- Card 1: Employability Tiers Breakdown -->
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-size: 1.15rem;">🏅 Employability Readiness Tiers</h3>
+            <span class="badge badge-neutral">Cohort Distribution</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+            Readiness tiers classified by explainable alignment percentage:
+          </p>
+          <div id="tier-breakdown-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Card 2: Campus Skill Deficit Areas -->
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-size: 1.15rem;">⚠️ Top Campus Skill Deficits</h3>
+            <span class="badge badge-warning">High Priority Upskilling</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+            Skills where students most frequently have partial or missing competencies:
+          </p>
+          <div id="deficit-skills-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Student Progression & Timestamp Table -->
+      <div class="card" style="padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--secondary);">
+              📋 Enrolled Student Progression & Audit Records
+            </h2>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              Showing <span id="table-count" style="font-weight: 700; color: var(--secondary);">0</span> student records
+            </div>
+          </div>
+
+          <div style="min-width: 280px;">
+            <input 
+              type="text" 
+              id="student-search-input" 
+              placeholder="🔍 Search candidate by name, email, or role..." 
+              style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 0.9rem;"
+            >
+          </div>
+        </div>
+
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Candidate Details</th>
+                <th>Degree / College</th>
+                <th>Target Role</th>
+                <th>Alignment Score</th>
+                <th>Skill Growth</th>
+                <th>Timestamp</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="students-table-body">
+              <tr>
+                <td colspan="8" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                  Loading progression records...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Student Detail Modal -->
+    <div id="student-detail-modal" class="modal-backdrop">
+      <div class="modal-card" style="max-width: 600px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+          <div>
+            <h3 id="modal-student-name" style="font-size: 1.35rem; color: var(--secondary); font-weight: 800;"></h3>
+            <div id="modal-student-email" style="font-size: 0.85rem; color: var(--text-muted);"></div>
+          </div>
+          <button type="button" id="close-detail-modal-btn" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+        </div>
+
+        <div id="modal-student-meta" style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.85rem; font-size: 0.85rem; margin-bottom: 1rem;">
+          <!-- Meta details -->
+        </div>
+
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">
+          Evaluated Competency Breakdown:
+        </h4>
+        <div id="modal-skills-list" style="margin-bottom: 1.5rem;">
+          <!-- Competencies -->
+        </div>
+
+        <div style="text-align: right;">
+          <button type="button" id="modal-close-btn" class="btn btn-secondary">Close Inspector</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ethical AI Hackathon Disclaimer -->
+    <div class="disclaimer-box">
+      ⚖️ <strong>Smart India Hackathon (SIH) Compliance:</strong> Student timestamps and assessment history are recorded in accordance with verifiable, transparent scoring audit standards.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>SKILLTRACE © 2026 — Smart India Hackathon (SIH) Prototype</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

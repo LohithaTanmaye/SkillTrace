@@ -9,12 +9,20 @@ const API_BASE = window.location.origin.includes(":8000")
   : "http://127.0.0.1:8000";
 
 // Generic API caller
-async function apiCall(endpoint, method = "GET", body = null) {
+async function apiCall(endpoint, method = "GET", body = null, extraHeaders = {}) {
+  const headers = {
+    "Content-Type": "application/json",
+    ...extraHeaders,
+  };
+
+  const adminToken = localStorage.getItem("skilltrace_admin_token");
+  if (adminToken && endpoint.startsWith("/admin/") && !endpoint.includes("/login")) {
+    headers["Authorization"] = `Bearer ${adminToken}`;
+  }
+
   const options = {
     method,
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
   };
   if (body) {
     options.body = JSON.stringify(body);
@@ -1038,6 +1046,312 @@ async function initJobsPage() {
   }
 }
 
+// -------------------------------------------------------------
+// ADMINISTRATOR PORTAL & PROGRESSION TRACKING LOGIC
+// -------------------------------------------------------------
+async function initAdminPage() {
+  const loginView = document.getElementById("admin-login-view");
+  const dashboardView = document.getElementById("admin-dashboard-view");
+  const loginForm = document.getElementById("admin-login-form");
+  const quickDemoBtn = document.getElementById("quick-demo-login-btn");
+  const logoutBtn = document.getElementById("admin-logout-btn");
+  const refreshBtn = document.getElementById("refresh-stats-btn");
+  const searchInput = document.getElementById("student-search-input");
+  const tableBody = document.getElementById("students-table-body");
+  const tableCount = document.getElementById("table-count");
+
+  const kpiStudents = document.getElementById("kpi-total-students");
+  const kpiAssessments = document.getElementById("kpi-total-assessments");
+  const kpiScore = document.getElementById("kpi-avg-score");
+  const kpiImprovement = document.getElementById("kpi-avg-improvement");
+  const tierContainer = document.getElementById("tier-breakdown-container");
+  const deficitContainer = document.getElementById("deficit-skills-container");
+
+  // Modal elements
+  const detailModal = document.getElementById("student-detail-modal");
+  const closeDetailModalBtn = document.getElementById("close-detail-modal-btn");
+  const modalCloseBtn = document.getElementById("modal-close-btn");
+  const modalName = document.getElementById("modal-student-name");
+  const modalEmail = document.getElementById("modal-student-email");
+  const modalMeta = document.getElementById("modal-student-meta");
+  const modalSkills = document.getElementById("modal-skills-list");
+
+  if (!loginView || !dashboardView) return;
+
+  let allStudents = [];
+
+  function checkAuth() {
+    const token = localStorage.getItem("skilltrace_admin_token");
+    if (token) {
+      loginView.style.display = "none";
+      dashboardView.style.display = "block";
+      loadAdminData();
+    } else {
+      loginView.style.display = "block";
+      dashboardView.style.display = "none";
+    }
+  }
+
+  // Quick Demo Credentials Fill
+  if (quickDemoBtn) {
+    quickDemoBtn.addEventListener("click", () => {
+      const uField = document.getElementById("admin-username");
+      const pField = document.getElementById("admin-password");
+      if (uField) uField.value = "admin";
+      if (pField) pField.value = "admin123";
+      if (loginForm) loginForm.dispatchEvent(new Event("submit"));
+    });
+  }
+
+  // Handle Login
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("admin-username").value.trim();
+      const password = document.getElementById("admin-password").value.trim();
+      const submitBtn = loginForm.querySelector("button[type='submit']");
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Authenticating...";
+
+      try {
+        const res = await apiCall("/admin/login", "POST", { username, password });
+        localStorage.setItem("skilltrace_admin_token", res.access_token);
+        checkAuth();
+      } catch (err) {
+        alert(`Authentication Failed: ${err.message}`);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Sign In to Admin Dashboard ➔";
+      }
+    });
+  }
+
+  // Handle Logout
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("skilltrace_admin_token");
+      checkAuth();
+    });
+  }
+
+  // Refresh
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", () => {
+      loadAdminData();
+    });
+  }
+
+  // Format ISO timestamp to human-friendly local time
+  function formatTimestamp(isoStr) {
+    if (!isoStr) return "N/A";
+    try {
+      const d = new Date(isoStr);
+      if (isNaN(d.getTime())) return isoStr;
+      return d.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    } catch {
+      return isoStr;
+    }
+  }
+
+  // Load Dashboard Data
+  async function loadAdminData() {
+    try {
+      const [stats, students] = await Promise.all([
+        apiCall("/admin/stats"),
+        apiCall("/admin/students"),
+      ]);
+
+      allStudents = students;
+
+      // Update KPIs
+      if (kpiStudents) kpiStudents.innerText = stats.total_students;
+      if (kpiAssessments) kpiAssessments.innerText = stats.total_assessments;
+      if (kpiScore) kpiScore.innerText = `${stats.average_score}%`;
+      if (kpiImprovement) kpiImprovement.innerText = `+${stats.average_improvement}%`;
+
+      // Render Tiers Breakdown
+      if (tierContainer && stats.tier_distribution) {
+        const td = stats.tier_distribution;
+        tierContainer.innerHTML = `
+          <div style="margin-bottom: 0.75rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">
+              <span>🏆 Tier 1: Industry Ready (≥75%)</span>
+              <span>${td.tier_1_count} (${td.tier_1_pct}%)</span>
+            </div>
+            <div style="height: 8px; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
+              <div style="height: 100%; background: var(--success); width: ${td.tier_1_pct}%;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 0.75rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">
+              <span>🥈 Tier 2: Targeted Upskilling (50-74%)</span>
+              <span>${td.tier_2_count} (${td.tier_2_pct}%)</span>
+            </div>
+            <div style="height: 8px; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
+              <div style="height: 100%; background: var(--warning); width: ${td.tier_2_pct}%;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem;">
+              <span>🥉 Tier 3: Foundational Stage (&lt;50%)</span>
+              <span>${td.tier_3_count} (${td.tier_3_pct}%)</span>
+            </div>
+            <div style="height: 8px; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
+              <div style="height: 100%; background: var(--danger); width: ${td.tier_3_pct}%;"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Render Deficit Skills
+      if (deficitContainer && stats.top_deficit_skills) {
+        deficitContainer.innerHTML = stats.top_deficit_skills.map(ds => `
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="font-size: 0.9rem; color: var(--secondary);">${ds.skill}</strong>
+            <span class="badge badge-warning" style="font-size: 0.75rem;">${ds.count} students below req</span>
+          </div>
+        `).join("");
+      }
+
+      // Render Table
+      renderTable(students);
+
+    } catch (err) {
+      if (err.message && (err.message.includes("401") || err.message.includes("unauthorized") || err.message.includes("token"))) {
+        localStorage.removeItem("skilltrace_admin_token");
+        checkAuth();
+      } else {
+        console.error("Admin data load error:", err);
+      }
+    }
+  }
+
+  function renderTable(data) {
+    if (tableCount) tableCount.innerText = data.length;
+
+    if (data.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="8" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+            No student enrollment records found matching your filter.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = data.map(s => {
+      const delta = s.improvement_delta || 0;
+      const trendHtml = delta > 0
+        ? `<span class="trend-badge trend-up">+${delta}% ⬆️</span>`
+        : `<span class="trend-badge trend-neutral">Baseline</span>`;
+
+      return `
+        <tr>
+          <td><strong style="color: var(--primary); font-family: monospace;">${s.student_id}</strong></td>
+          <td>
+            <div style="font-weight: 700; color: var(--secondary);">${s.name}</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">${s.email}</div>
+          </td>
+          <td><span style="font-size: 0.85rem;">${s.degree || "B.Tech Computer Science"}</span></td>
+          <td><span class="badge badge-neutral" style="font-weight: 600;">${s.target_role || "Software Engineer"}</span></td>
+          <td>
+            <div style="font-weight: 800; font-size: 1rem; color: var(--secondary);">${s.score || 0}%</div>
+            <span class="badge ${s.tier_badge || 'badge-neutral'}" style="font-size: 0.7rem; padding: 0.1rem 0.35rem;">
+              ${(s.readiness_tier || "Tier 2").split(":")[0]}
+            </span>
+          </td>
+          <td>${trendHtml}</td>
+          <td><span class="timestamp-pill">🕒 ${formatTimestamp(s.timestamp)}</span></td>
+          <td>
+            <button type="button" class="btn btn-secondary btn-sm inspect-btn" data-id="${s.student_id}" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">
+              👁️ Inspect
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+
+    // Add click listeners to inspect buttons
+    tableBody.querySelectorAll(".inspect-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const stuId = btn.dataset.id;
+        const student = allStudents.find(s => s.student_id === stuId);
+        if (student) showStudentModal(student);
+      });
+    });
+  }
+
+  // Filter listener
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const kw = e.target.value.trim().toLowerCase();
+      if (!kw) {
+        renderTable(allStudents);
+        return;
+      }
+      const filtered = allStudents.filter(s => 
+        s.name.toLowerCase().includes(kw) ||
+        s.email.toLowerCase().includes(kw) ||
+        (s.target_role && s.target_role.toLowerCase().includes(kw)) ||
+        s.student_id.toLowerCase().includes(kw)
+      );
+      renderTable(filtered);
+    });
+  }
+
+  // Show Inspector Modal
+  function showStudentModal(s) {
+    if (!detailModal) return;
+    modalName.innerText = s.name;
+    modalEmail.innerText = `${s.email} | Student ID: ${s.student_id}`;
+
+    modalMeta.innerHTML = `
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+        <div><strong>Degree:</strong> ${s.degree || "B.Tech"}</div>
+        <div><strong>Target Role:</strong> ${s.target_role || "N/A"}</div>
+        <div><strong>Overall Alignment:</strong> ${s.score}% (${s.readiness_tier || "Tier 2"})</div>
+        <div><strong>Last Assessed:</strong> ${formatTimestamp(s.timestamp)}</div>
+      </div>
+    `;
+
+    modalSkills.innerHTML = s.student_skills && s.student_skills.length > 0
+      ? s.student_skills.map(sk => `
+          <div class="gap-item" style="padding: 0.4rem 0;">
+            <strong>${sk.name}</strong>
+            <span class="badge badge-primary">Level ${sk.level} / 5</span>
+          </div>
+        `).join("")
+      : `<p style="color: var(--text-muted); font-size: 0.85rem;">No skills registered yet.</p>`;
+
+    detailModal.classList.add("active");
+  }
+
+  function hideStudentModal() {
+    if (detailModal) detailModal.classList.remove("active");
+  }
+
+  if (closeDetailModalBtn) closeDetailModalBtn.addEventListener("click", hideStudentModal);
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", hideStudentModal);
+  if (detailModal) {
+    detailModal.addEventListener("click", (e) => {
+      if (e.target === detailModal) hideStudentModal();
+    });
+  }
+
+  // Initial check
+  checkAuth();
+}
+
 // Auto-initialize based on active page
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("assessment-form")) {
@@ -1048,6 +1362,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initResultsPage();
   } else if (document.getElementById("jobs-grid")) {
     initJobsPage();
+  } else if (document.getElementById("admin-login-view")) {
+    initAdminPage();
   }
 });
 

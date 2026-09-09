@@ -103,22 +103,10 @@ def submit_assessment_answers(payload: AssessmentSubmitRequest):
     eval_result = analyze_assessment(assessment_data)
     student_skills = assessment_to_student_skills(eval_result["evaluated_skills"])
 
-    # Optional automatic student registration if candidate details were provided
-    registered_student = None
-    if payload.student_name and payload.email:
-        try:
-            registered_student = add_student(
-                name=payload.student_name,
-                email=payload.email,
-                student_skills=student_skills,
-            )
-        except Exception:
-            pass
-
     response_payload: Dict[str, Any] = {
         "evaluated_skills": eval_result["evaluated_skills"],
         "student_skills_profile": student_skills,
-        "registered_student": registered_student,
+        "registered_student": None,
         "note": eval_result["note"],
         "job_analysis": None,
     }
@@ -201,5 +189,21 @@ def submit_assessment_answers(payload: AssessmentSubmitRequest):
         )
         analysis_result["job_title"] = target_title or "Target Role"
         response_payload["job_analysis"] = analysis_result
+
+    # Register or update student with evaluated score and progression
+    if payload.student_name and payload.email:
+        try:
+            score = response_payload["job_analysis"]["match_score"] if response_payload["job_analysis"] else None
+            registered = add_student(
+                name=payload.student_name,
+                email=payload.email,
+                student_skills=student_skills,
+                degree=payload.degree,
+                target_role=target_title or "Target Role",
+                match_score=score,
+            )
+            response_payload["registered_student"] = registered
+        except Exception:
+            pass
 
     return response_payload
