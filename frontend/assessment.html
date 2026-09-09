@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Assessment - SKILLTRACE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      🎯 <span>SKILLTRACE</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Skill Matcher</a>
+      <a href="assessment.html" class="active">Pre-Assessment</a>
+      <a href="/docs" target="_blank">API Docs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2>📝 Skill Proficiency Pre-Assessment</h2>
+      </div>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Answer the calibrated questions below to evaluate your skill levels (Level 1–5).
+        Select your target job role to immediately see your job-readiness match score and gap analysis.
+      </p>
+
+      <form id="assessment-form">
+        <!-- Target Job Selection -->
+        <div style="margin-bottom: 1.5rem; background: #f8fafc; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <label for="target-job-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">
+            Select Target Benchmark Job Role:
+          </label>
+          <select id="target-job-select" style="width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600;">
+            <option value="">Loading job roles...</option>
+          </select>
+        </div>
+
+        <!-- Dynamic Questions Container -->
+        <div id="questions-container">
+          <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+            Loading question bank...
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="text-align: right; margin-top: 1.5rem;">
+          <button type="submit" class="btn btn-primary btn-lg">Submit & View Job Readiness ➔</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="disclaimer-box">
+      ⚖️ <strong>Disclaimer:</strong> Proficiency levels generated from this pre-assessment are estimates based on your answers. They do not constitute a formal certification.
+    </div>
+  </main>
+
+  <footer>
+    <p>SKILLTRACE © 2026 — Smart India Hackathon (SIH) Prototype</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKILLTRACE - Student Skill Analysis & Job-Readiness</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      🎯 <span>SKILLTRACE</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="dashboard.html">Skill Matcher</a>
+      <a href="assessment.html">Pre-Assessment</a>
+      <a href="/docs" target="_blank">API Docs</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main class="container">
+    <section class="hero">
+      <h1>Bridge the Gap Between Student Skills & Industry Demand</h1>
+      <p>
+        An explainable AI-driven readiness platform that evaluates technical competencies,
+        pinpoints exact skill gaps, calculates transparent alignment scores, and provides
+        structured learning pathways.
+      </p>
+      <div class="hero-actions">
+        <a href="assessment.html" class="btn btn-primary btn-lg">Take Pre-Assessment</a>
+        <a href="dashboard.html" class="btn btn-secondary btn-lg">Explore Skill Matcher</a>
+      </div>
+    </section>
+
+    <!-- Architecture & Features Overview -->
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-header">
+          <h3>📝 Objective Pre-Assessment</h3>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Take calibrated multiple-choice evaluations across key engineering competencies.
+          Our strict boundary scoring algorithm accurately estimates your proficiency from
+          Level 1 (Beginner) to Level 5 (Proficient).
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>🔍 3-Tier Gap Analysis</h3>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Compare your capabilities against real-world job benchmarks. Every required skill
+          is categorized into <strong>Full Match</strong>, <strong>Partial Gap</strong>, or
+          <strong>Missing Skill</strong> with severity weighting.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>💡 Explainable AI & Action Plan</h3>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Zero black-box mystery. Every alignment score is auditable through a clear mathematical formula.
+          Receive dynamic, prioritized learning recommendations tailored to your exact deficits.
+        </p>
+      </div>
+    </div>
+
+    <!-- Transparent Formula Card -->
+    <div class="card" style="margin-top: 1rem; text-align: center;">
+      <div class="card-header" style="justify-content: center;">
+        <h3>📐 Mathematical Transparency</h3>
+      </div>
+      <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">
+        Unlike opaque scoring algorithms, SKILLTRACE calculates your job alignment transparently:
+      </p>
+      <div style="background: #f1f5f9; padding: 1rem; border-radius: var(--radius-md); font-family: monospace; font-size: 1.1rem; margin: 1rem auto; display: inline-block;">
+        Skill Score = min(Student Level / Required Level, 1.0) <br>
+        Overall Match = Average(Skill Scores) × 100%
+      </div>
+    </div>
+
+    <div class="disclaimer-box">
+      ⚖️ <strong>Disclaimer:</strong> The match score provided by SKILLTRACE is an estimate of skill alignment based on available assessment data and stated job requirements. It does not guarantee employment or job suitability.
+    </div>
+  </main>
+
+  <footer>
+    <p>SKILLTRACE © 2026 — Smart India Hackathon (SIH) Prototype</p>
+  </footer>
+
+</body>
+</html>

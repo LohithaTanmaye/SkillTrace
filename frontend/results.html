@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Readiness Analysis Results - SKILLTRACE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      🎯 <span>SKILLTRACE</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Skill Matcher</a>
+      <a href="assessment.html">Pre-Assessment</a>
+      <a href="/docs" target="_blank">API Docs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h1 style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);">Job Readiness & Gap Analysis</h1>
+      <div style="display: flex; gap: 0.75rem;">
+        <button onclick="window.print()" class="btn btn-secondary">🖨️ Print / Save Report</button>
+        <a href="dashboard.html" class="btn btn-primary">← Modify Profile</a>
+      </div>
+    </div>
+
+    <!-- Results dynamically rendered via script.js -->
+    <div id="results-content">
+      <div style="text-align: center; padding: 4rem; color: var(--text-muted);">
+        Loading analysis results...
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>SKILLTRACE © 2026 — Smart India Hackathon (SIH) Prototype</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

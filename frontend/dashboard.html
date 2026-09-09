@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard & Skill Matcher - SKILLTRACE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      🎯 <span>SKILLTRACE</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html" class="active">Skill Matcher</a>
+      <a href="assessment.html">Pre-Assessment</a>
+      <a href="/docs" target="_blank">API Docs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="grid-2">
+      <!-- Left Column: Student Skill Profile -->
+      <div class="card">
+        <div class="card-header">
+          <h2>👤 Student Skill Profile</h2>
+          <button type="button" id="add-skill-btn" class="btn btn-secondary btn-sm">+ Add Skill</button>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label for="student-preset" style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">
+            Load Persona Preset:
+          </label>
+          <select id="student-preset" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem;">
+            <option value="">Loading presets...</option>
+          </select>
+        </div>
+
+        <!-- Dynamic Skills List -->
+        <div id="skills-list" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 380px; overflow-y: auto; padding-right: 0.5rem;">
+          <!-- Injected via script.js -->
+        </div>
+
+        <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+          💡 <em>Tip: Levels range from 1 (Beginner) to 5 (Proficient). You can also <a href="assessment.html" style="color: var(--primary);">take an objective pre-assessment</a> to automatically estimate your levels.</em>
+        </div>
+      </div>
+
+      <!-- Right Column: Target Job Selection & Execution -->
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="card-header">
+            <h2>🎯 Select Target Benchmark Role</h2>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
+            Choose a benchmark industry role to compare your competencies against:
+          </p>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label for="job-select" style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">
+              Target Job:
+            </label>
+            <select id="job-select" style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600;">
+              <option value="">Loading jobs...</option>
+            </select>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--secondary);">How Analysis Works</h4>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1.25rem; line-height: 1.6;">
+              <li>Normalizes skill names and canonical tech aliases.</li>
+              <li>Calculates mathematical match score using capped ratios.</li>
+              <li>Detects full matches, partial gaps, and missing requirements.</li>
+              <li>Generates an actionable, prioritized learning roadmap.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <button type="button" id="analyze-btn" class="btn btn-primary btn-lg" style="width: 100%;">
+            Analyze Job Readiness ➔
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer-box">
+      ⚖️ <strong>Disclaimer:</strong> The match score provided by SKILLTRACE is an estimate of skill alignment based on available assessment data and stated job requirements. It does not guarantee employment or job suitability.
+    </div>
+  </main>
+
+  <footer>
+    <p>SKILLTRACE © 2026 — Smart India Hackathon (SIH) Prototype</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
