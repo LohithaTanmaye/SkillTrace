@@ -9,12 +9,14 @@ client = TestClient(app)
 
 
 def test_root_and_health():
-    res = client.get("/")
-    assert res.status_code == 200
-    data = res.json()
-    assert data["project"] == "SKILLTRACE"
-    assert data["status"] == "online"
+    # Verify metadata endpoint
+    res_meta = client.get("/api/meta")
+    assert res_meta.status_code == 200
+    meta_data = res_meta.json()
+    assert meta_data["project"] == "SKILLTRACE"
+    assert meta_data["status"] == "online"
 
+    # Verify health check
     res_health = client.get("/health")
     assert res_health.status_code == 200
     assert res_health.json()["status"] == "healthy"
