@@ -15,6 +15,7 @@
     </a>
     <nav class="nav-links">
       <a href="index.html">Home</a>
+      <a href="jobs.html">Explore Roles</a>
       <a href="dashboard.html">Skill Matcher</a>
       <a href="assessment.html" class="active">Pre-Assessment</a>
       <a href="/docs" target="_blank">API Docs</a>
@@ -55,12 +56,23 @@
             <input type="text" id="candidate-degree" placeholder="e.g. B.Tech Computer Science" style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem;">
           </div>
           <div>
-            <label for="target-job-select" style="font-weight: 600; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">
+            <label for="target-job-input" style="font-weight: 600; display: block; margin-bottom: 0.35rem; font-size: 0.9rem;">
               Target Career Role: <span style="color: var(--danger);">*</span>
             </label>
-            <select id="target-job-select" required style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem; font-weight: 600;">
-              <option value="">Loading job roles...</option>
-            </select>
+            <input 
+              type="text" 
+              id="target-job-input" 
+              list="job-suggestions" 
+              required 
+              placeholder="e.g. Junior Data Analyst, Full Stack Developer..." 
+              style="width: 100%; padding: 0.65rem; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem; font-weight: 600;"
+            >
+            <datalist id="job-suggestions">
+              <!-- Dynamically populated benchmark jobs -->
+            </datalist>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem;">
+              💡 Pick a benchmark role or type your custom dream role (e.g. "Cloud DevOps Engineer", "AI Researcher").
+            </div>
           </div>
         </div>
 

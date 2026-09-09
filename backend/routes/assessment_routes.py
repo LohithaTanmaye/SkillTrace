@@ -13,6 +13,7 @@ from backend.schemas.assessment_schemas import (
 )
 from backend.services.data_service import (
     load_assessment_questions,
+    load_jobs,
     get_job_by_id,
     add_student,
 )
@@ -122,19 +123,83 @@ def submit_assessment_answers(payload: AssessmentSubmitRequest):
         "job_analysis": None,
     }
 
-    # Optional immediate job matching if target_job_id was provided
+    # Immediate job matching: supports target_job_id OR custom target_job_title
+    target_job = None
+    target_title = (payload.target_job_title or "").strip()
+    target_skills = []
+
+    # 1. Look up by ID if provided
     if payload.target_job_id:
         target_job = get_job_by_id(payload.target_job_id)
         if target_job:
-            analysis_input = {
-                "job_title": target_job["title"],
-                "student_skills": student_skills,
-                "job_skills": target_job["job_skills"],
-            }
-            response_payload["job_analysis"] = analyze_student(
-                analysis_input,
-                enable_semantic=settings.ENABLE_SEMANTIC_MATCHING,
-                semantic_threshold=settings.SEMANTIC_SIMILARITY_THRESHOLD,
-            )
+            target_title = target_job["title"]
+            target_skills = target_job["job_skills"]
+
+    # 2. Look up by custom title if not resolved by ID
+    if not target_job and target_title:
+        clean_title = target_title.lower()
+        all_jobs = load_jobs()
+        for j in all_jobs:
+            if clean_title == j["title"].lower() or clean_title in j["title"].lower() or j["title"].lower() in clean_title:
+                target_job = j
+                target_title = j["title"]
+                target_skills = j["job_skills"]
+                break
+
+        # 3. Dynamic benchmark synthesis for completely custom dream roles
+        if not target_skills:
+            if any(k in clean_title for k in ["data", "analyst", "bi", "analytics"]):
+                target_skills = [
+                    {"name": "Python", "required_level": 4},
+                    {"name": "SQL", "required_level": 4},
+                    {"name": "Power BI", "required_level": 3},
+                    {"name": "Excel", "required_level": 4},
+                ]
+            elif any(k in clean_title for k in ["front", "web", "react", "ui", "ux"]):
+                target_skills = [
+                    {"name": "JavaScript", "required_level": 4},
+                    {"name": "HTML", "required_level": 4},
+                    {"name": "CSS", "required_level": 4},
+                    {"name": "React", "required_level": 3},
+                    {"name": "Git", "required_level": 3},
+                ]
+            elif any(k in clean_title for k in ["cloud", "devops", "infra", "sre"]):
+                target_skills = [
+                    {"name": "Linux", "required_level": 4},
+                    {"name": "Docker", "required_level": 4},
+                    {"name": "AWS", "required_level": 3},
+                    {"name": "Git", "required_level": 4},
+                    {"name": "Python", "required_level": 3},
+                ]
+            elif any(k in clean_title for k in ["ml", "ai", "machine", "learning", "deep"]):
+                target_skills = [
+                    {"name": "Python", "required_level": 5},
+                    {"name": "SQL", "required_level": 4},
+                    {"name": "Machine Learning", "required_level": 4},
+                    {"name": "Statistics", "required_level": 4},
+                    {"name": "Docker", "required_level": 3},
+                ]
+            else:
+                target_skills = [
+                    {"name": "Python", "required_level": 4},
+                    {"name": "FastAPI", "required_level": 3},
+                    {"name": "SQL", "required_level": 4},
+                    {"name": "Docker", "required_level": 3},
+                    {"name": "Git", "required_level": 3},
+                ]
+
+    if target_skills:
+        analysis_input = {
+            "job_title": target_title or "Target Role",
+            "student_skills": student_skills,
+            "job_skills": target_skills,
+        }
+        analysis_result = analyze_student(
+            analysis_input,
+            enable_semantic=settings.ENABLE_SEMANTIC_MATCHING,
+            semantic_threshold=settings.SEMANTIC_SIMILARITY_THRESHOLD,
+        )
+        analysis_result["job_title"] = target_title or "Target Role"
+        response_payload["job_analysis"] = analysis_result
 
     return response_payload

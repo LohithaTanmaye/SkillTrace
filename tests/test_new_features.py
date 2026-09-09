@@ -89,3 +89,37 @@ def test_level_by_level_study_roadmap():
         assert "focus_topics" in m
         assert "suggested_project" in m
         assert len(m["suggested_project"]) > 5
+
+
+def test_assessment_submit_with_custom_target_job_title():
+    # User submits assessment with a custom entered target job title
+    payload = {
+        "student_name": "Lohitha Test",
+        "email": "lohita.custom@example.com",
+        "degree": "B.Tech IT",
+        "answers": [
+            {"question_id": "Q101", "selected_option": "C"},
+            {"question_id": "Q102", "selected_option": "B"},
+        ],
+        "target_job_title": "Full Stack Web Developer",
+    }
+
+    res = client.post("/assessment/submit", json=payload)
+    assert res.status_code == 200
+    data = res.json()
+
+    assert data["registered_student"]["name"] == "Lohitha Test"
+    assert "student_skills_profile" in data
+    assert data["job_analysis"] is not None
+    assert "Full Stack Web Developer" in data["job_analysis"]["job_title"]
+    assert "match_score" in data["job_analysis"]
+    assert len(data["job_analysis"]["score_breakdown"]) > 0
+
+
+def test_jobs_html_static_serving():
+    res = client.get("/jobs.html")
+    assert res.status_code == 200
+    assert "Explore In-Demand Tech Roles" in res.text
+    assert "job-search-input" in res.text
+    assert "skill-cloud-container" in res.text
+

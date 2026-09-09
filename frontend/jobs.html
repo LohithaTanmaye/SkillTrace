@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Tech Roles & Skill Demands - SKILLTRACE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      🎯 <span>SKILLTRACE</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="jobs.html" class="active">Explore Roles</a>
+      <a href="dashboard.html">Skill Matcher</a>
+      <a href="assessment.html">Pre-Assessment</a>
+      <a href="/docs" target="_blank">API Docs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Header Section -->
+    <div style="margin-bottom: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="badge badge-primary" style="margin-bottom: 0.5rem; display: inline-block;">Career & Skill Directory</span>
+          <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--secondary); letter-spacing: -0.02em;">
+            Explore In-Demand Tech Roles
+          </h1>
+          <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin-top: 0.25rem;">
+            Browse calibrated industry job roles, inspect required skill levels, and instantly test your job-readiness with explainable AI.
+          </p>
+        </div>
+        <a href="assessment.html" class="btn btn-primary btn-lg">
+          🎯 Take Custom Pre-Assessment ➔
+        </a>
+      </div>
+    </div>
+
+    <!-- Live Search & Domain Filter Bar -->
+    <div class="card" style="padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;">
+      <div style="margin-bottom: 1rem;">
+        <input 
+          type="text" 
+          id="job-search-input" 
+          placeholder="🔍 Search by role title, domain, or required skill (e.g. Python, Machine Learning, Docker, SQL)..." 
+          style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 1rem; font-weight: 500; outline: none; transition: border-color 0.15s;"
+        >
+      </div>
+      
+      <!-- Domain Filter Pills -->
+      <div class="filter-pills-wrap" id="domain-filters">
+        <button type="button" class="filter-pill active" data-domain="ALL">All Domains (<span id="count-all">0</span>)</button>
+        <button type="button" class="filter-pill" data-domain="Data Science">Data Science & AI</button>
+        <button type="button" class="filter-pill" data-domain="Software Engineering">Software Engineering</button>
+        <button type="button" class="filter-pill" data-domain="Cloud & DevOps">Cloud & DevOps</button>
+        <button type="button" class="filter-pill" data-domain="Web Development">Web Development</button>
+      </div>
+    </div>
+
+    <!-- Active Filter Status Indicator -->
+    <div id="filter-status-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+      <div>
+        Showing <strong id="visible-jobs-count" style="color: var(--secondary);">0</strong> roles
+      </div>
+      <button id="reset-filter-btn" style="display: none; background: none; border: none; color: var(--primary); font-weight: 600; cursor: pointer; text-decoration: underline;">
+        Clear filters
+      </button>
+    </div>
+
+    <!-- Dynamic Jobs Grid -->
+    <div id="jobs-grid" class="jobs-grid">
+      <div style="text-align: center; grid-column: 1 / -1; padding: 3rem; color: var(--text-muted);">
+        Loading calibrated benchmark roles...
+      </div>
+    </div>
+
+    <!-- Interactive Skills Demand Index & Cloud -->
+    <div class="card" style="margin-top: 2rem;">
+      <div class="card-header">
+        <div>
+          <h3 style="font-size: 1.25rem;">⚡ In-Demand Skills Directory</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">
+            Click any skill below to filter matching roles in real time:
+          </p>
+        </div>
+        <span class="badge badge-neutral">Industry Demand Index</span>
+      </div>
+
+      <div class="skill-cloud-wrap" id="skill-cloud-container">
+        <!-- Dynamically rendered skill chips -->
+      </div>
+    </div>
+
+    <!-- Ethical AI Hackathon Disclaimer -->
+    <div class="disclaimer-box">
+      ⚖️ <strong>Smart India Hackathon (SIH) Note:</strong> Job requirements and proficiency benchmarks are curated from verified industry hiring rubrics. SkillTrace utilizes transparent mathematical models (min(student/required, 1.0) * 100) to guarantee unbiased, auditable evaluation.
+    </div>
+  </main>
+
+  <footer>
+    <p>SKILLTRACE © 2026 — Smart India Hackathon (SIH) Prototype</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -26,6 +26,7 @@ class AssessmentSubmitRequest(BaseModel):
     degree: Optional[str] = Field(None, description="Optional academic major or degree")
     answers: List[AssessmentAnswerSubmission] = Field(..., description="List of user's submitted answers")
     target_job_id: Optional[str] = Field(None, description="Optional target job ID to immediately run matching")
+    target_job_title: Optional[str] = Field(None, description="Optional custom target job title entered by the user")
 
 
 class AssessmentItemRaw(BaseModel):

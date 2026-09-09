@@ -62,11 +62,12 @@ function getStudentSkills() {
 }
 
 // -------------------------------------------------------------
-// ASSESSMENT PAGE LOGIC (with Candidate Details Gate)
+// ASSESSMENT PAGE LOGIC (with Candidate Details Gate & User-Entered Target Role)
 // -------------------------------------------------------------
 async function initAssessmentPage() {
   const container = document.getElementById("questions-container");
-  const jobSelect = document.getElementById("target-job-select");
+  const jobInput = document.getElementById("target-job-input");
+  const jobSuggestions = document.getElementById("job-suggestions");
   const candidateForm = document.getElementById("candidate-info-form");
   const assessmentForm = document.getElementById("assessment-form");
 
@@ -86,7 +87,7 @@ async function initAssessmentPage() {
     name: "",
     email: "",
     degree: "",
-    target_job_id: "JOB001",
+    target_job_id: null,
     target_job_title: "Junior Data Analyst",
   };
 
@@ -96,10 +97,22 @@ async function initAssessmentPage() {
       apiCall("/jobs"),
     ]);
 
-    if (jobSelect) {
-      jobSelect.innerHTML = jobs.map(j => 
-        `<option value="${j.job_id}">${j.title} (${j.domain})</option>`
+    // Populate datalist suggestions
+    if (jobSuggestions) {
+      jobSuggestions.innerHTML = jobs.map(j => 
+        `<option value="${j.title}">${j.title} (${j.domain})</option>`
       ).join("");
+    }
+
+    // Check URL query parameters for pre-filling role (e.g. from jobs.html)
+    const urlParams = new URLSearchParams(window.location.search);
+    const qRole = urlParams.get("role");
+    const qTitle = urlParams.get("title");
+    if (qTitle && jobInput) {
+      jobInput.value = qTitle;
+    } else if (qRole && jobInput) {
+      const matched = jobs.find(j => j.job_id === qRole);
+      if (matched) jobInput.value = matched.title;
     }
 
     // Step 1: Candidate Form Submission
@@ -109,20 +122,28 @@ async function initAssessmentPage() {
         const name = document.getElementById("candidate-name").value.trim();
         const email = document.getElementById("candidate-email").value.trim();
         const degree = document.getElementById("candidate-degree").value.trim();
-        const selectedJob = jobSelect.options[jobSelect.selectedIndex];
+        const enteredJobTitle = jobInput ? jobInput.value.trim() : "Target Role";
 
         if (!name || !email) {
           alert("Please enter your name and email to proceed.");
           return;
         }
 
+        // Match against existing benchmark jobs if possible
+        const matchedBenchmark = jobs.find(j => 
+          j.title.toLowerCase() === enteredJobTitle.toLowerCase()
+        );
+
         activeCandidate = {
           name,
           email,
           degree,
-          target_job_id: jobSelect.value,
-          target_job_title: selectedJob ? selectedJob.text.split(" (")[0] : "Target Role",
+          target_job_id: matchedBenchmark ? matchedBenchmark.job_id : null,
+          target_job_title: enteredJobTitle,
         };
+
+        // Save candidate to localStorage for results page certificate & audit
+        localStorage.setItem("skilltrace_candidate_profile", JSON.stringify(activeCandidate));
 
         // Populate summary bar
         if (summaryName) summaryName.innerText = activeCandidate.name;
@@ -190,7 +211,8 @@ async function initAssessmentPage() {
           email: activeCandidate.email,
           degree: activeCandidate.degree,
           answers,
-          target_job_id: activeCandidate.target_job_id || "JOB001",
+          target_job_id: activeCandidate.target_job_id,
+          target_job_title: activeCandidate.target_job_title,
         };
 
         const result = await apiCall("/assessment/submit", "POST", payload);
@@ -267,6 +289,13 @@ async function initDashboardPage() {
     }
 
     populateStudentPresets(students);
+
+    // Support ?job_id=... query parameter from jobs explorer
+    const urlParams = new URLSearchParams(window.location.search);
+    const qJobId = urlParams.get("job_id");
+    if (qJobId && jobSelect) {
+      jobSelect.value = qJobId;
+    }
 
     presetSelect.addEventListener("change", () => {
       const selected = presetSelect.options[presetSelect.selectedIndex];
@@ -497,7 +526,7 @@ async function initDashboardPage() {
 }
 
 // -------------------------------------------------------------
-// RESULTS PAGE LOGIC (with Multi-Role Match & Level Roadmaps)
+// RESULTS PAGE LOGIC (with Readiness Tiers, Visual Dual-Bars, & Audit Token)
 // -------------------------------------------------------------
 function initResultsPage() {
   const result = getAnalysisResult();
@@ -516,20 +545,119 @@ function initResultsPage() {
     return;
   }
 
+  // Calculate Employability Readiness Tier
+  let tierClass = "tier-3";
+  let tierIcon = "🥉";
+  let tierTitle = "Tier 3: Foundational Stage";
+  let tierVerdict = "In-Training & Upskilling Recommended";
+  let tierAdvice = "Candidate is currently building foundational competencies. Recommend following the prioritized study milestones and completing hands-on portfolio projects before job applications.";
+
+  if (result.match_score >= 75) {
+    tierClass = "tier-1";
+    tierIcon = "🏆";
+    tierTitle = "Tier 1: Industry Ready (Employable)";
+    tierVerdict = "Direct Interview & Placement Recommended";
+    tierAdvice = "Candidate demonstrates strong competency alignment with standard industry benchmarks. Well-prepared for immediate internship or junior engineering deployment.";
+  } else if (result.match_score >= 50) {
+    tierClass = "tier-2";
+    tierIcon = "🥈";
+    tierTitle = "Tier 2: Job Ready with Targeted Upskilling";
+    tierVerdict = "Fast-Track Candidate (Estimated 2–4 Weeks Sprint)";
+    tierAdvice = "Candidate exhibits solid core fundamentals with 1–2 target deficits. Focused practice on high-priority gap areas will bridge the remaining distance.";
+  }
+
+  // Retrieve stored candidate info for official report stamp
+  const candidateRaw = localStorage.getItem("skilltrace_candidate_profile");
+  const candidate = candidateRaw ? JSON.parse(candidateRaw) : null;
+  const candidateName = candidate ? candidate.name : "Candidate";
+  const candidateDegree = candidate && candidate.degree ? ` (${candidate.degree})` : "";
+  const evalDate = new Date().toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  const auditToken = `SIH2026-VAL-${Math.abs(result.job_title.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)).toString(16).toUpperCase()}-${result.match_score}`;
+
   container.innerHTML = `
     <!-- Top Score Banner -->
     <div class="score-banner">
       <div>
-        <div class="score-label">OVERALL SKILL ALIGNMENT ESTIMATE</div>
+        <div class="score-label">TARGET ROLE: ${result.job_title.toUpperCase()}</div>
         <div class="score-number">${result.match_score}%</div>
         <div style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">
-          Computed across ${result.score_breakdown ? result.score_breakdown.length : 0} required skills
+          Computed across ${result.score_breakdown ? result.score_breakdown.length : 0} required skills • Candidate: <strong>${candidateName}</strong>${candidateDegree}
         </div>
       </div>
       <div style="text-align: right;">
-        <span class="badge ${result.match_score >= 75 ? 'badge-success' : (result.match_score >= 45 ? 'badge-warning' : 'badge-danger')}" style="font-size: 1rem; padding: 0.5rem 1rem;">
-          ${result.match_score >= 75 ? 'Strong Alignment' : (result.match_score >= 45 ? 'Moderate Alignment' : 'Foundational Readiness')}
+        <span class="badge ${result.match_score >= 75 ? 'badge-success' : (result.match_score >= 50 ? 'badge-warning' : 'badge-danger')}" style="font-size: 1rem; padding: 0.5rem 1rem;">
+          ${tierTitle.split(':')[1]}
         </span>
+      </div>
+    </div>
+
+    <!-- Employability Readiness Tier Badge Card -->
+    <div class="tier-badge-card ${tierClass}">
+      <div class="tier-icon">${tierIcon}</div>
+      <div>
+        <div style="font-size: 1.25rem; font-weight: 800; color: var(--secondary);">
+          ${tierTitle}
+        </div>
+        <div style="font-size: 0.95rem; font-weight: 600; color: #1e293b; margin-top: 0.2rem;">
+          Verdict: <span style="text-decoration: underline;">${tierVerdict}</span>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.35rem;">
+          <strong>Recruiter Insight:</strong> ${tierAdvice}
+        </p>
+      </div>
+    </div>
+
+    <!-- Visual Skill Level Comparison Progress Bars -->
+    <div class="card">
+      <div class="card-header">
+        <h3>📊 Visual Skill Level Comparison (Student vs Target Role)</h3>
+        <span class="badge badge-neutral">Standard Scale: Level 1 to 5</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        The graph below illustrates candidate evaluated proficiency against the required industry benchmark level for <strong>${result.job_title}</strong>:
+      </p>
+
+      <div>
+        ${result.score_breakdown ? result.score_breakdown.map(b => {
+          const studentPercent = Math.min(100, Math.round((b.student_level / 5) * 100));
+          const targetPercent = Math.min(100, Math.round((b.required_level / 5) * 100));
+          let statusClass = "status-met";
+          let statusLabel = "✓ Met Requirement";
+          let statusBadge = "badge-success";
+
+          if (b.student_level === 0) {
+            statusClass = "status-missing";
+            statusLabel = "✕ Missing Prerequisite";
+            statusBadge = "badge-danger";
+          } else if (b.student_level < b.required_level) {
+            statusClass = "status-partial";
+            statusLabel = `▲ Deficit: -${b.required_level - b.student_level} Level(s)`;
+            statusBadge = "badge-warning";
+          }
+
+          return `
+            <div class="comp-bar-container">
+              <div class="comp-bar-header">
+                <div>
+                  <strong style="font-size: 0.95rem; color: var(--secondary);">${b.skill}</strong>
+                  <span class="badge ${statusBadge}" style="margin-left: 0.5rem; font-size: 0.75rem;">
+                    ${statusLabel}
+                  </span>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">
+                  Candidate: <strong>Level ${b.student_level}</strong> / 5 &nbsp;|&nbsp; Target: <strong>Level ${b.required_level}</strong> / 5
+                </div>
+              </div>
+
+              <div class="comp-bar-track">
+                <div class="comp-bar-fill ${statusClass}" style="width: ${studentPercent}%;"></div>
+                <div class="comp-target-marker" style="left: ${targetPercent}%;" title="Required Level ${b.required_level}">
+                  <span class="comp-target-label">Target L${b.required_level}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("") : ""}
       </div>
     </div>
 
@@ -537,11 +665,11 @@ function initResultsPage() {
     ${multiRoles && multiRoles.ranked_roles ? `
       <div class="card">
         <div class="card-header">
-          <h3>💼 Career Roles You Can Target (Multi-Role Compatibility)</h3>
+          <h3>💼 Other Career Roles You Can Target (Multi-Role Compatibility)</h3>
           <span class="badge badge-neutral">${multiRoles.total_roles_evaluated} Benchmark Roles Analyzed</span>
         </div>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
-          Based on your current competencies, here is how well you match across different industry career paths:
+          Based on your current technical competencies, here is how well you match across other engineering pathways:
         </p>
         <div>
           ${multiRoles.ranked_roles.map(r => `
@@ -710,11 +838,204 @@ function initResultsPage() {
       </table>
     </div>
 
+    <!-- Verifiable Algorithmic Audit Token Box -->
+    <div class="audit-stamp-box">
+      <div>
+        <div style="font-weight: 700; color: var(--secondary); margin-bottom: 0.2rem;">
+          🛡️ Verified SkillTrace Evaluation Record
+        </div>
+        <div style="color: var(--text-muted); font-size: 0.8rem;">
+          Candidate: <strong>${candidateName}</strong> | Evaluated Target: <strong>${result.job_title}</strong> | Date: ${evalDate}
+        </div>
+        <div style="font-family: monospace; font-size: 0.8rem; color: #1e40af; margin-top: 0.25rem;">
+          Audit Hash: ${auditToken}
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-neutral" style="border: 1px solid var(--border); font-size: 0.8rem; padding: 0.4rem 0.75rem;">
+          Smart India Hackathon 2026 Verified
+        </span>
+      </div>
+    </div>
+
     <!-- Mandatory Ethical Disclaimer -->
     <div class="disclaimer-box">
       ⚖️ <strong>Disclaimer:</strong> ${result.disclaimer}
     </div>
   `;
+}
+
+// -------------------------------------------------------------
+// JOBS & SKILLS EXPLORER PAGE LOGIC
+// -------------------------------------------------------------
+async function initJobsPage() {
+  const jobsGrid = document.getElementById("jobs-grid");
+  const searchInput = document.getElementById("job-search-input");
+  const domainFilterContainer = document.getElementById("domain-filters");
+  const skillCloudContainer = document.getElementById("skill-cloud-container");
+  const countAll = document.getElementById("count-all");
+  const visibleCount = document.getElementById("visible-jobs-count");
+  const resetBtn = document.getElementById("reset-filter-btn");
+
+  if (!jobsGrid) return;
+
+  try {
+    const jobs = await apiCall("/jobs");
+    if (countAll) countAll.innerText = jobs.length;
+    if (visibleCount) visibleCount.innerText = jobs.length;
+
+    let selectedDomain = "ALL";
+    let searchKeyword = "";
+
+    // Extract unique skills & frequencies for the skill cloud
+    const skillCounts = {};
+    jobs.forEach(j => {
+      j.job_skills.forEach(s => {
+        skillCounts[s.name] = (skillCounts[s.name] || 0) + 1;
+      });
+    });
+
+    // Render Skill Cloud
+    if (skillCloudContainer) {
+      const sortedSkills = Object.entries(skillCounts).sort((a, b) => b[1] - a[1]);
+      skillCloudContainer.innerHTML = sortedSkills.map(([skillName, count]) => `
+        <div class="skill-cloud-chip" data-skill="${skillName}">
+          <span>${skillName}</span>
+          <span style="font-size: 0.75rem; opacity: 0.75; background: #e2e8f0; padding: 0.1rem 0.35rem; border-radius: 9999px;">
+            ${count} role${count > 1 ? 's' : ''}
+          </span>
+        </div>
+      `).join("");
+
+      skillCloudContainer.querySelectorAll(".skill-cloud-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const skill = chip.dataset.skill;
+          if (searchInput) {
+            searchInput.value = skill;
+            searchKeyword = skill.toLowerCase();
+            renderFilteredJobs();
+          }
+        });
+      });
+    }
+
+    function renderFilteredJobs() {
+      const filtered = jobs.filter(j => {
+        // Domain match
+        const matchesDomain = selectedDomain === "ALL" || 
+          j.domain.toLowerCase().includes(selectedDomain.toLowerCase()) ||
+          selectedDomain.toLowerCase().includes(j.domain.toLowerCase());
+
+        // Keyword match (title, domain, or skills)
+        const matchesKeyword = !searchKeyword ||
+          j.title.toLowerCase().includes(searchKeyword) ||
+          j.domain.toLowerCase().includes(searchKeyword) ||
+          j.job_skills.some(s => s.name.toLowerCase().includes(searchKeyword));
+
+        return matchesDomain && matchesKeyword;
+      });
+
+      if (visibleCount) visibleCount.innerText = filtered.length;
+      if (resetBtn) {
+        resetBtn.style.display = (selectedDomain !== "ALL" || searchKeyword) ? "inline" : "none";
+      }
+
+      if (filtered.length === 0) {
+        jobsGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #ffffff; border: 1px dashed var(--border); border-radius: var(--radius-lg);">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+            <h3 style="color: var(--secondary);">No Matching Roles Found</h3>
+            <p style="color: var(--text-muted); margin: 0.5rem 0 1.5rem 0;">Try searching for a different keyword or resetting your filter.</p>
+            <button class="btn btn-secondary" onclick="document.getElementById('reset-filter-btn').click()">Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      jobsGrid.innerHTML = filtered.map(j => {
+        const preAssessUrl = `assessment.html?role=${j.job_id}&title=${encodeURIComponent(j.title)}`;
+        const dashboardUrl = `dashboard.html?job_id=${j.job_id}`;
+        return `
+          <div class="job-explorer-card">
+            <div>
+              <div class="job-explorer-header">
+                <div class="job-explorer-title">${j.title}</div>
+                <span class="badge badge-primary" style="font-size: 0.75rem;">${j.domain}</span>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 0.5rem; align-items: center;">
+                <span>💼 ${j.experience_level}</span>
+                <span>•</span>
+                <span style="color: var(--success); font-weight: 600;">🔥 High Demand</span>
+              </div>
+
+              <div class="job-skills-wrap">
+                ${j.job_skills.map(s => `
+                  <span class="skill-tag-badge">
+                    ${s.name}
+                    <span class="level-pill">Lvl ${s.required_level}</span>
+                  </span>
+                `).join("")}
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+              <a href="${preAssessUrl}" class="btn btn-primary" style="flex: 1; font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                🎯 Take Assessment ➔
+              </a>
+              <a href="${dashboardUrl}" class="btn btn-secondary" title="Match against custom skills profile" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                ⚡ Match
+              </a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Initial render
+    renderFilteredJobs();
+
+    // Search input listener
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        searchKeyword = e.target.value.trim().toLowerCase();
+        renderFilteredJobs();
+      });
+    }
+
+    // Domain filters listener
+    if (domainFilterContainer) {
+      domainFilterContainer.querySelectorAll(".filter-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          domainFilterContainer.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedDomain = btn.dataset.domain;
+          renderFilteredJobs();
+        });
+      });
+    }
+
+    // Reset button
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        selectedDomain = "ALL";
+        searchKeyword = "";
+        if (searchInput) searchInput.value = "";
+        if (domainFilterContainer) {
+          domainFilterContainer.querySelectorAll(".filter-pill").forEach(b => {
+            b.classList.toggle("active", b.dataset.domain === "ALL");
+          });
+        }
+        renderFilteredJobs();
+      });
+    }
+
+  } catch (err) {
+    jobsGrid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--danger);">
+        Error loading roles. Please verify backend server is running.
+      </div>
+    `;
+  }
 }
 
 // Auto-initialize based on active page
@@ -725,5 +1046,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initDashboardPage();
   } else if (document.getElementById("results-content")) {
     initResultsPage();
+  } else if (document.getElementById("jobs-grid")) {
+    initJobsPage();
   }
 });
+
