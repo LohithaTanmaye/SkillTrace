@@ -11,4 +11,4 @@ echo   - Web Dashboard:  http://127.0.0.1:8000
 echo   - Pre-Assessment: http://127.0.0.1:8000/assessment.html
 echo   - Swagger Docs:   http://127.0.0.1:8000/docs
 echo --------------------------------------------------------
-uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload

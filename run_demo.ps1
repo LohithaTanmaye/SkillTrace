@@ -13,4 +13,4 @@ Write-Host "  - Pre-Assessment: http://127.0.0.1:8000/assessment.html" -Foregrou
 Write-Host "  - Swagger Docs:   http://127.0.0.1:8000/docs" -ForegroundColor Cyan
 Write-Host "--------------------------------------------------------"
 
-uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
