@@ -1,0 +1,35 @@
+{
+  "analyze_student_benchmark": {
+    "job_title": "Junior Data Analyst",
+    "student_skills": [
+      { "name": "Python", "level": 4 },
+      { "name": "SQL", "level": 3 },
+      { "name": "Excel", "level": 4 }
+    ],
+    "job_skills": [
+      { "name": "Python", "required_level": 4 },
+      { "name": "SQL", "required_level": 4 },
+      { "name": "Power BI", "required_level": 3 },
+      { "name": "Excel", "required_level": 4 }
+    ]
+  },
+  "raw_assessment_evaluation": {
+    "assessment": [
+      { "skill": "Python", "questions": 10, "correct_answers": 8 },
+      { "skill": "SQL", "questions": 10, "correct_answers": 6 },
+      { "skill": "Power BI", "questions": 10, "correct_answers": 2 }
+    ]
+  },
+  "interactive_assessment_submission": {
+    "answers": [
+      { "question_id": "Q101", "selected_option": "C" },
+      { "question_id": "Q102", "selected_option": "B" },
+      { "question_id": "Q105", "selected_option": "B" }
+    ],
+    "target_job_id": "JOB001"
+  },
+  "match_stored_job": {
+    "student_id": "STU001",
+    "job_id": "JOB001"
+  }
+}
